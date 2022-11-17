@@ -1,6 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Project.Model;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Security.Principal;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace Project.ViewModel;
 
@@ -11,6 +18,8 @@ public class LoginViewModel : ViewModelBase
     private string _password;
     private string _errorMessage;
     private bool _isviewVisible = true;
+
+    private IUserRepository userRepository;
 
     public string UserName { get => _userName; set { _userName = value; OnPropChanged(nameof(UserName)); } }
     public string Password { get => _password; set { _password = value; OnPropChanged(nameof(Password)); } }
@@ -33,11 +42,6 @@ public class LoginViewModel : ViewModelBase
         throw new NotImplementedException();
     }
 
-    private void ExecuteLoginCommand(object obj)
-    {
-        throw new NotImplementedException();
-    }
-
     private bool CanExcetueLoginCommand(object obj)
     {
         bool validData = true;
@@ -46,5 +50,28 @@ public class LoginViewModel : ViewModelBase
 
         return validData;
 
+    }
+
+    private async void ExecuteLoginCommand(object obj)
+    {
+        var isValidUser = false;
+        if (bool.Parse(System.Configuration.ConfigurationManager.AppSettings["UseApi"]))
+        {
+            var jsonString = JsonConvert.DeserializeObject(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetUser?Username={UserName}&Password={Password}"));
+            if (jsonString.ToString() != "[]") 
+            {
+                isValidUser = true;
+            }
+        }
+        else
+            isValidUser = userRepository.AuthenticateUser(new NetworkCredential(UserName, Password));
+
+        if (isValidUser)
+        {
+            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(UserName), null);
+            IsVisible = false;
+        }
+        else
+            ErrorMessage = "* Invalid username or password";
     }
 }

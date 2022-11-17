@@ -1,4 +1,5 @@
 ﻿
+using Project.Model;
 using System.ComponentModel;
 
 namespace Project.ViewModel;

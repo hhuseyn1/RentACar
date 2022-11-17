@@ -99,7 +99,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" Source="/Images/StepLogo.jpg" Width="250"/>
-                <TextBlock Grid.Row="1" FontFamily="Montserrat" FontSize="18" Foreground="White" Text="Welcome Huseyn's rent a car !!!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="1" FontFamily="Montserrat" FontSize="18" Foreground="White" Text="Welcome rent a car !!!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="2" Text="Username" Foreground="White" FontWeight="Thin" FontSize="12"/>
                     <TextBox Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3" VerticalAlignment="Top">
                         <TextBox.Resources>
