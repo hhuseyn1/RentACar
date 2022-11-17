@@ -43,7 +43,6 @@ def FetchData():
     Connection.commit()
     UserData = Cursor.fetchall()
     threading.Timer(3.0, FetchData).start()
-    print("Data Fetched")
 
 FetchData()
 

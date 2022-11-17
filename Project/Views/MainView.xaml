@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:Project.Views" xmlns:viewModel="clr-namespace:Project.ViewModel"
         mc:Ignorable="d"
         Title="MainView" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
@@ -54,8 +55,29 @@
             <Run Text="Page: "/>
             <Run Text="{Binding CurrentPage}"/>
         </TextBlock>
-        <Button Command="{Binding PrevPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" Height="50" Content="\"/>
-        <Button Command="{Binding NextPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" Height="50" Content="\"/>
+        <Button Command="{Binding PrevPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" Height="50" Content="←" FontSize="30">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Command="{Binding NextPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" Height="50" Content="→" FontSize="30">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </Button.Style>
+        </Button>
+        <fa:ImageAwesome Visibility="{Binding Visibility}" Grid.RowSpan="99" Grid.ColumnSpan="99" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="Refresh" Spin="True" Height="48" Width="48" />
     </Grid>
 
 </Window>

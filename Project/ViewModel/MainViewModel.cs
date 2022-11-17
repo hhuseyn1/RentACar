@@ -1,26 +1,30 @@
 ﻿using Newtonsoft.Json;
 using Project.Model;
 using Project.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace Project.ViewModel;
 
 public class MainViewModel : ViewModelBase
 {
+    public Visibility _Visibility;
+    public Visibility Visibility
+    {
+        get { return _Visibility; }
+        set { _Visibility = value; OnPropChanged(nameof(Visibility)); }
+    }
+
     private int _CurrentPage = 1;
     public int CurrentPage
     {
         get { return _CurrentPage; }
         set { _CurrentPage = value; OnPropChanged(nameof(CurrentPage)); }
     }
-
 
     public ICommand PrevPage { get; }
     public ICommand NextPage { get; }
@@ -64,7 +68,7 @@ public class MainViewModel : ViewModelBase
                     if (Car.Page == CurrentPage)
                         Cars.Add(Car);
                 }
-                Cars = Cars;
+                Visibility = Visibility.Hidden;
             }
             else
             {
@@ -106,15 +110,10 @@ public class MainViewModel : ViewModelBase
             CurrentPage++;
 
         Cars.Clear();
-        if (AllCars.Count > 0) 
+        foreach (var Car in AllCars)
         {
-            foreach (var Car in AllCars)
-            {
-                if (Car.Page == CurrentPage)
-                    Cars.Add(Car);
-            }
+            if (Car.Page == CurrentPage)
+                Cars.Add(Car);
         }
-        Cars = Cars;
-
     }
 }
