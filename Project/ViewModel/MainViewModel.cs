@@ -1,6 +1,8 @@
-﻿using Project.Model;
+﻿using Newtonsoft.Json;
+using Project.Model;
 using Project.Repositories;
 using System;
+using System.Net.Http;
 using System.Threading;
 using System.Windows;
 
@@ -23,24 +25,45 @@ public class MainViewModel : ViewModelBase
 		LoadCurrentUserData();
 	}
 
-    private void LoadCurrentUserData()
+    private async void LoadCurrentUserData()
     {
-
-        var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
-		if (user != null)
+		if (bool.Parse(System.Configuration.ConfigurationManager.AppSettings["UseApi"]))
 		{
-			CurrentUserAccount = new UserAccountModel()
-			{
-				Username = user.Username,
-				DisplayName = $"Welcome {user.Name} {user.Lastname}",
-				ProfilePicture = null
-			};
-			MessageBox.Show("Test");
+			var jsonString = JsonConvert.DeserializeObject<User>(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetUser?Username={IUserRepository.CurrentUsername}&Password={IUserRepository.CurrentPassword}"));
+            if (jsonString != null)
+            {
+                CurrentUserAccount = new UserAccountModel()
+                {
+                    Username = jsonString.Username,
+                    DisplayName = $"Welcome {jsonString.Name} {jsonString.Lastname}",
+                    ProfilePicture = null
+                };
+            }
+            else
+            {
+                MessageBox.Show("Invalid User");
+                Application.Current.Shutdown();
+            }
 		}
 		else
 		{
-			MessageBox.Show("Invalid User");
-			Application.Current.Shutdown();
-		}
+            var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
+            if (user != null)
+            {
+                CurrentUserAccount = new UserAccountModel()
+                {
+                    Username = user.Username,
+                    DisplayName = $"Welcome {user.Name} {user.Lastname}",
+                    ProfilePicture = null
+                };
+                MessageBox.Show("Test");
+            }
+            else
+            {
+                MessageBox.Show("Invalid User");
+                Application.Current.Shutdown();
+            }
+        }
+        
     }
 }

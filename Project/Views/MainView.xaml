@@ -9,7 +9,8 @@
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
+    
     <Grid>
-                <TextBlock Text="{Binding CurrentUserAccount.DisplayName}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="{Binding CurrentUserAccount.DisplayName}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
     </Grid>
 </Window>

@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Project.Model;
+using Project.Repositories;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -60,6 +62,9 @@ public class LoginViewModel : ViewModelBase
             var jsonString = JsonConvert.DeserializeObject(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetUser?Username={UserName}&Password={Password}"));
             if (jsonString.ToString() != "[]") 
             {
+                IUserRepository.CurrentUsername = (jsonString as JObject)["Username"].ToString();
+                IUserRepository.CurrentPassword = (jsonString as JObject)["Password"].ToString();
+                //userRepository.CurrentUsername = (jsonString as JObject)["Username"].ToString();
                 isValidUser = true;
             }
         }
