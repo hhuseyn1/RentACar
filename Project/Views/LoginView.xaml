@@ -4,8 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project.Views"
+        xmlns:viewModel="clr-namespace:Project.ViewModel"
         mc:Ignorable="d"
         Title="LoginView" WindowStyle="None" Background="Transparent" Height="550" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <viewModel:LoginViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisib"/>
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Path="IsVisible" Mode="TwoWay" Converter="{StaticResource BoolToVisib}"/>
+    </Window.Visibility>
     <Grid>
         <Border CornerRadius="50" BorderThickness="10">
             <Border.Background>
@@ -82,7 +92,8 @@
                     <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -90,7 +101,7 @@
                 <Image Grid.Row="0" Source="/Images/StepLogo.jpg" Width="250"/>
                 <TextBlock Grid.Row="1" FontFamily="Montserrat" FontSize="18" Foreground="White" Text="Welcome Huseyn's rent a car !!!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="2" Text="Username" Foreground="White" FontWeight="Thin" FontSize="12"/>
-                    <TextBox Grid.Row="3" VerticalAlignment="Top">
+                    <TextBox Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
@@ -98,14 +109,15 @@
                         </TextBox.Resources>
                     </TextBox>
                     <TextBlock Grid.Row="4" Text="Password" Foreground="White" FontWeight="Thin" FontSize="12"/>
-                    <TextBox Grid.Row="5" VerticalAlignment="Top">
+                    <TextBox Text="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <Button Grid.Row="6" Foreground="White" BorderThickness="0" Content="LOG IN">
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="6" />
+                    <Button Command="{Binding LoginCommand}" Grid.Row="7" Foreground="White" BorderThickness="0" Content="LOG IN">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
