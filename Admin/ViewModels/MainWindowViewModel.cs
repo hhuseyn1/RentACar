@@ -52,6 +52,13 @@ namespace Admin.ViewModels
                 },
                 new NavigationItem()
                 {
+                    Content = "Database",
+                    PageTag = "databaes",
+                    Icon = SymbolRegular.Database32,
+                    PageType = typeof(Views.Pages.DataBasePage)
+                },
+                new NavigationItem()
+                {
                     Content = "Log",
                     PageTag = "log",
                     Icon = SymbolRegular.BookPulse20,

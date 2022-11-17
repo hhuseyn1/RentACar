@@ -17,12 +17,19 @@
         <viewModel:DashboardViewModel/>
     </ui:UiPage.DataContext>
     <Grid>
-        <ui:ProgressRing Visibility="{Binding Visibility}" IsIndeterminate="True"/>
-        <ListBox ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Count: " FontSize="25"></TextBlock>
+        <ui:Button Command="{Binding AddCommandCommand}" Grid.Column="0" Width="50" Height="30" HorizontalAlignment="Right" Content="Add" Margin="5"/>
+        <ui:Button Grid.Column="0" Width="90" Height="30" HorizontalAlignment="Right" Content="Remove" Margin="0,0,60,0"/>
+        <ui:ProgressRing Grid.Row="1" Visibility="{Binding Visibility}" IsIndeterminate="True"/>
+        <ListBox Grid.Row="1" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Button Visibility="Hidden" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.MyCommand}"/>
+                        <!--<Button Visibility="Hidden" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.MyCommand}"/>-->
                         <Label Content="{Binding Id}" ContentStringFormat="ID: {0}"/>
                         <Label Content="{Binding Make}" ContentStringFormat="Make: {0}"/>
                         <Label Content="{Binding Model}" ContentStringFormat="Model: {0}"/>
@@ -38,5 +45,5 @@
             </ListBox.ItemsPanel>
         </ListBox>
     </Grid>
-    
+
 </ui:UiPage>

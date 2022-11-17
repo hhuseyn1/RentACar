@@ -15,12 +15,10 @@ namespace Admin.ViewModels;
 public class UsersViewModel : ObservableObject, INavigationAware, INotifyPropertyChanged
 {
     DispatcherTimer timer = new DispatcherTimer();
-
-    private ObservableCollection<User> _users;
     public ObservableCollection<User> Users
     {
-        get { return _users; }
-        set { _users = value; NotifyPropertyChanged(); }
+        get { return User.AllUsers; }
+        set { User.AllUsers = value; NotifyPropertyChanged(); }
     }
 
     public Visibility _Visibility;
@@ -32,9 +30,7 @@ public class UsersViewModel : ObservableObject, INavigationAware, INotifyPropert
 
     public void OnNavigatedFrom()
     {
-        timer.Interval = new TimeSpan(0, 0, 0, 1);
-        timer.Tick += new EventHandler(timerTick_event);
-        timer.Start();
+        
     }
 
     private void timerTick_event(object? sender, EventArgs e) => GetData();
@@ -47,7 +43,9 @@ public class UsersViewModel : ObservableObject, INavigationAware, INotifyPropert
 
     public void OnNavigatedTo()
     {
-        
+        timer.Interval = new TimeSpan(0, 0, 0, 1);
+        timer.Tick += new EventHandler(timerTick_event);
+        timer.Start();
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

@@ -53,6 +53,8 @@ namespace Admin
                 services.AddScoped<ViewModels.UsersViewModel>();
                 services.AddScoped<Views.Pages.DataPage>();
                 services.AddScoped<ViewModels.DataViewModel>();
+                services.AddScoped<Views.Pages.DataBasePage>();
+                services.AddScoped<ViewModels.DataBaseViewModel>();
                 services.AddScoped<Views.Pages.SettingsPage>();
                 services.AddScoped<ViewModels.SettingsViewModel>();
 
