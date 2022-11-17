@@ -1,0 +1,42 @@
+﻿<ui:UiPage x:Class="Admin.Views.Pages.UsersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Admin.Views.Pages"
+    xmlns:viewModel="clr-namespace:Admin.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodels="clr-namespace:Admin.ViewModels"
+           Title="DashboardPage"
+           d:DataContext="{d:DesignInstance viewmodels:UsersViewModel, IsDesignTimeCreatable=False}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    d:Background="{DynamicResource ApplicationBackgroundBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    mc:Ignorable="d">
+    <ui:UiPage.DataContext>
+        <viewModel:UsersViewModel/>
+    </ui:UiPage.DataContext>
+    <Grid>
+        <ui:ProgressRing Visibility="{Binding Visibility}" IsIndeterminate="True"/>
+        <ListBox ItemsSource="{Binding Users}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Id}" ContentStringFormat="ID: {0}"/>
+                        <Label Content="{Binding Username}" ContentStringFormat="UserName: {0}"/>
+                        <Label Content="{Binding Password}" ContentStringFormat="Password: {0}"/>
+                        <Label Content="{Binding Name}" ContentStringFormat="Name: {0}"/>
+                        <Label Content="{Binding Lastname}" ContentStringFormat="LastName: {0}"/>
+                        <Label Content="{Binding Email}" ContentStringFormat="Email: {0}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+    </Grid>
+    
+</ui:UiPage>

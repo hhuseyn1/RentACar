@@ -5,12 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project.Views" xmlns:viewModel="clr-namespace:Project.ViewModel"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MainView" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-    
-    <Grid>
-        <TextBlock Text="{Binding CurrentUserAccount.DisplayName}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+
+
+    <Grid x:Name="Cars">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/ParkingZone2D.jpg"></ImageBrush>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="144*"/>
+            <ColumnDefinition Width="143*"/>
+            <ColumnDefinition Width="144*"/>
+            <ColumnDefinition Width="144*"/>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="42*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="211*"/>
+            <RowDefinition Height="223*"/>
+        </Grid.RowDefinitions>
+
+        <ListBox ItemsSource="{Binding Cars}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Image Source="/Images/Car1.png" Stretch="None"/>
+                        <Label Content="{Binding Plate}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel>
+                        <WrapPanel.Background>
+                            <ImageBrush ImageSource="/Images/ParkingZone2D.jpg"></ImageBrush>
+                        </WrapPanel.Background>
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
     </Grid>
+
 </Window>

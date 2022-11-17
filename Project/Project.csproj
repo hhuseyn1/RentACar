@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\Car1.png" />
+    <None Remove="Images\Car2.png" />
+    <None Remove="Images\ParkingZone2D.jpg" />
     <None Remove="Images\StepLogo.jpg" />
   </ItemGroup>
 
@@ -21,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\Car1.png" />
+    <Resource Include="Images\Car2.png" />
+    <Resource Include="Images\ParkingZone2D.jpg" />
     <Resource Include="Images\StepLogo.jpg" />
   </ItemGroup>
 

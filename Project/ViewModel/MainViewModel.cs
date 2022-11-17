@@ -2,9 +2,11 @@
 using Project.Model;
 using Project.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace Project.ViewModel;
 
@@ -16,10 +18,17 @@ public class MainViewModel : ViewModelBase
 	public UserAccountModel CurrentUserAccount
 	{
 		get { return _currentUserAccount; }
-		set { _currentUserAccount = value; OnPropChanged(nameof(CurrentUserAccount)); }
+        set { _currentUserAccount = value; OnPropChanged(nameof(CurrentUserAccount)); }
 	}
 
-	public MainViewModel()
+    private List<Car> _cars;
+    public List<Car> Cars
+    {
+        get { return _cars; }
+        set { _cars = value; OnPropChanged(nameof(Cars)); }
+    }
+
+    public MainViewModel()
 	{
 		userRepository = new UserRepository();
 		LoadCurrentUserData();
@@ -32,12 +41,13 @@ public class MainViewModel : ViewModelBase
 			var jsonString = JsonConvert.DeserializeObject<User>(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetUser?Username={IUserRepository.CurrentUsername}&Password={IUserRepository.CurrentPassword}"));
             if (jsonString != null)
             {
-                CurrentUserAccount = new UserAccountModel()
-                {
-                    Username = jsonString.Username,
-                    DisplayName = $"Welcome {jsonString.Name} {jsonString.Lastname}",
-                    ProfilePicture = null
-                };
+                Cars = JsonConvert.DeserializeObject<List<Car>>(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetCars"));
+                // CurrentUserAccount = new UserAccountModel()
+                // {
+                //     Username = jsonString.Username,
+                //     DisplayName = $"Welcome {jsonString.Name} {jsonString.Lastname}",
+                //     ProfilePicture = null
+                // };
             }
             else
             {
@@ -56,7 +66,6 @@ public class MainViewModel : ViewModelBase
                     DisplayName = $"Welcome {user.Name} {user.Lastname}",
                     ProfilePicture = null
                 };
-                MessageBox.Show("Test");
             }
             else
             {
