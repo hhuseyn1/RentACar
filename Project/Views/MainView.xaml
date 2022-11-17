@@ -30,10 +30,10 @@
             <RowDefinition Height="223*"/>
         </Grid.RowDefinitions>
 
-        <ListBox ItemsSource="{Binding Cars}">
+        <ListBox Grid.RowSpan="99" Grid.ColumnSpan="99" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Margin="55, 20, 0, 0">
                         <Image Source="/Images/Car1.png" Stretch="None"/>
                         <Label Content="{Binding Plate}"/>
                     </StackPanel>
@@ -41,14 +41,21 @@
             </ListBox.ItemTemplate>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel>
+                    <WrapPanel IsItemsHost="True">
                         <WrapPanel.Background>
                             <ImageBrush ImageSource="/Images/ParkingZone2D.jpg"></ImageBrush>
                         </WrapPanel.Background>
                     </WrapPanel>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
+            
         </ListBox>
+        <TextBlock Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" >
+            <Run Text="Page: "/>
+            <Run Text="{Binding CurrentPage}"/>
+        </TextBlock>
+        <Button Command="{Binding PrevPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" Height="50" Content="\"/>
+        <Button Command="{Binding NextPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" Height="50" Content="\"/>
     </Grid>
 
 </Window>

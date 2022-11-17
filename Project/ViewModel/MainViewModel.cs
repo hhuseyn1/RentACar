@@ -3,16 +3,28 @@ using Project.Model;
 using Project.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace Project.ViewModel;
 
 public class MainViewModel : ViewModelBase
 {
-	private IUserRepository userRepository;
+    private int _CurrentPage = 1;
+    public int CurrentPage
+    {
+        get { return _CurrentPage; }
+        set { _CurrentPage = value; OnPropChanged(nameof(CurrentPage)); }
+    }
+
+
+    public ICommand PrevPage { get; }
+    public ICommand NextPage { get; }
+    private IUserRepository userRepository;
 
 	private UserAccountModel _currentUserAccount;
 	public UserAccountModel CurrentUserAccount
@@ -21,8 +33,10 @@ public class MainViewModel : ViewModelBase
         set { _currentUserAccount = value; OnPropChanged(nameof(CurrentUserAccount)); }
 	}
 
-    private List<Car> _cars;
-    public List<Car> Cars
+    private List<Car> AllCars;
+
+    private ObservableCollection<Car> _cars;
+    public ObservableCollection<Car> Cars
     {
         get { return _cars; }
         set { _cars = value; OnPropChanged(nameof(Cars)); }
@@ -30,7 +44,10 @@ public class MainViewModel : ViewModelBase
 
     public MainViewModel()
 	{
-		userRepository = new UserRepository();
+        _cars = new ObservableCollection<Car>();
+        PrevPage = new RelayCommand(ExecutePrevCommand, CanExecutePrecCommand);
+        NextPage = new RelayCommand(ExecuteNextCommand, CanExecuteNextCommand);
+        userRepository = new UserRepository();
 		LoadCurrentUserData();
 	}
 
@@ -41,13 +58,13 @@ public class MainViewModel : ViewModelBase
 			var jsonString = JsonConvert.DeserializeObject<User>(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetUser?Username={IUserRepository.CurrentUsername}&Password={IUserRepository.CurrentPassword}"));
             if (jsonString != null)
             {
-                Cars = JsonConvert.DeserializeObject<List<Car>>(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetCars"));
-                // CurrentUserAccount = new UserAccountModel()
-                // {
-                //     Username = jsonString.Username,
-                //     DisplayName = $"Welcome {jsonString.Name} {jsonString.Lastname}",
-                //     ProfilePicture = null
-                // };
+                AllCars = JsonConvert.DeserializeObject<List<Car>>(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetCars"));
+                foreach (var Car in AllCars)
+                {
+                    if (Car.Page == CurrentPage)
+                        Cars.Add(Car);
+                }
+                Cars = Cars;
             }
             else
             {
@@ -74,5 +91,30 @@ public class MainViewModel : ViewModelBase
             }
         }
         
+    }
+
+    public void ExecutePrevCommand(object obj) => UpdatePage(true);
+    public void ExecuteNextCommand(object obj) => UpdatePage(false);
+    public bool CanExecutePrecCommand(object obj) => (CurrentPage - 1 > 0);
+    public bool CanExecuteNextCommand(object obj) => (AllCars is not null);
+
+    private void UpdatePage(bool Prev)
+    {
+        if (Prev)
+            CurrentPage--;
+        else
+            CurrentPage++;
+
+        Cars.Clear();
+        if (AllCars.Count > 0) 
+        {
+            foreach (var Car in AllCars)
+            {
+                if (Car.Page == CurrentPage)
+                    Cars.Add(Car);
+            }
+        }
+        Cars = Cars;
+
     }
 }

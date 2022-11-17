@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Project.Views"
         xmlns:viewModel="clr-namespace:Project.ViewModel"
         mc:Ignorable="d"
-        Title="LoginView" WindowStyle="None" Background="Transparent" Height="550" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="LoginView" WindowStyle="None" Background="Transparent" Height="550" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AllowsTransparency="True" BorderThickness="0">
     <Window.DataContext>
         <viewModel:LoginViewModel/>
     </Window.DataContext>
@@ -147,7 +147,7 @@
                     </Button>
 
                 </Grid>
-        </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

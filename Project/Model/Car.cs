@@ -12,6 +12,4 @@ public class Car
     public string Price { get; set; }
 
     public int Page { get; set; }
-    public int Row { get; set; }
-    public int Column { get; set; }
 }
