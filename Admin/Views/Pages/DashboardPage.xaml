@@ -5,7 +5,6 @@
     xmlns:local="clr-namespace:Admin.Views.Pages"
     xmlns:viewModel="clr-namespace:Admin.ViewModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodels="clr-namespace:Admin.ViewModels"
            Title="DashboardPage"
            d:DataContext="{d:DesignInstance viewmodels:DashboardViewModel, IsDesignTimeCreatable=False}"
@@ -20,11 +19,6 @@
     <Grid>
         <ui:ProgressRing Visibility="{Binding Visibility}" IsIndeterminate="True"/>
         <ListBox ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDoubleClick">
-                    <i:InvokeCommandAction Command="{Binding YourCommand}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
