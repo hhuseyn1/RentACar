@@ -95,7 +95,8 @@
                     <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
@@ -120,17 +121,20 @@
                     </TextBox>
                     <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="7" />
 
-                    <Button Command="{Binding LoginCommand}" Grid.Row="8" Foreground="White" BorderThickness="0" Content="LOG IN" >
+                    <Button Command="{Binding LoginCommand}" Grid.Row="8"  Content="LOG IN">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="10"/>
-                                <Setter Property="Width" Value="150"/>
-                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="CornerRadius" Value="20"/>
+                                <Setter Property="Width" Value="140"/>
+                                <Setter Property="Height" Value="30"/>
                             </Style>
                         </Button.Resources>
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#144552"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="10"/>
+                                <Setter Property="BorderThickness" Value="0"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#312244"></Setter>
@@ -148,7 +152,38 @@
                     </Button.Template>    
                         
                     </Button>
+                    <Line Grid.Row="9" X1="66" X2="120" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
+                    <Line Grid.Row="9" X1="150" X2="200" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
+                    <TextBlock Grid.Row="9" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Or"/>
+                    <Button Name="SignUpButton" Command="{Binding RegisterCommand}" Grid.Row="10" Content="Sign Up with Email" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="20"/>
+                                <Setter Property="Width" Value="140"/>
+                                <Setter Property="Height" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#312244"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="10"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True"/>
 
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>
