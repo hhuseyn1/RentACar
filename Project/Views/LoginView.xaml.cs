@@ -46,6 +46,20 @@ public partial class LoginView : Window
         }
     }
 
+    private void EnterKey(object sender, KeyEventArgs e)
+    {
+        if (UsernameTxtbox.Text.Length>0 && e.Key == Key.Enter)
+            e.Handled = true;
+
+    }
+
+    private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+     if (e.ButtonState == e.LeftButton)
+        this.DragMove();
+        
+    }
+
     //private async void Button_MouseLeave(object sender, MouseEventArgs e)
     //{
     //    if (sender is Button btn)

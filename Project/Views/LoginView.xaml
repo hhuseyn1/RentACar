@@ -30,7 +30,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0"  MouseDown="Window_MouseDown">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10*"/>
                     <ColumnDefinition Width="*"/>
@@ -90,7 +90,8 @@
                     <RowDefinition Height="5*"/>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="0.5*"/>
@@ -101,23 +102,25 @@
                 <Image Grid.Row="0" Source="/Images/StepLogo.jpg" Width="250"/>
                 <TextBlock Grid.Row="1" FontFamily="Montserrat" FontSize="18" Foreground="White" Text="Welcome rent a car !!!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="2" Text="Username" Foreground="White" FontWeight="Thin" FontSize="12"/>
-                    <TextBox Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3" VerticalAlignment="Top">
+                    <TextBox Name="UsernameTxtbox" Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Grid.Row="4" Text="Password" Foreground="White" FontWeight="Thin" FontSize="12"/>
-                    <TextBox Text="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" VerticalAlignment="Top">
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="4" />
+                    <TextBlock Grid.Row="5" Text="Password" Foreground="White" FontWeight="Thin" FontSize="12"  KeyDown="EnterKey"/>
+                    <TextBox Text="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="6" />
-                    <Button Command="{Binding LoginCommand}" Grid.Row="7" Foreground="White" BorderThickness="0" Content="LOG IN">
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="7" />
+
+                    <Button Command="{Binding LoginCommand}" Grid.Row="8" Foreground="White" BorderThickness="0" Content="LOG IN" >
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
