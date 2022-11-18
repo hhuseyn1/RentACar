@@ -86,22 +86,22 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="/Images/StepLogo.jpg" Width="250"/>
-                <TextBlock Grid.Row="1" FontFamily="Montserrat" FontSize="18" Foreground="White" Text="Welcome rent a car !!!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="/Images/StepLogo.jpg" Width="250"/>
+                    <TextBlock Grid.Row="1" FontFamily="Montserrat" FontSize="18" Foreground="White" Text="Welcome rent a car !!!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="2" Text="Username" Foreground="White" FontWeight="Thin" FontSize="12"/>
                     <TextBox Name="UsernameTxtbox" Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3" VerticalAlignment="Top">
                         <TextBox.Resources>
@@ -144,13 +144,13 @@
                             </Style>
                         </Button.Style>
                         <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>    
-                        
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
                     </Button>
                     <Line Grid.Row="9" X1="66" X2="120" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
                     <Line Grid.Row="9" X1="150" X2="200" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
@@ -185,7 +185,77 @@
 
                     </Button>
                 </Grid>
-            </Grid>
+
+
+                <Grid Grid.Column="1" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="/Images/StepLogo.jpg" Width="250"/>
+                    <TextBlock Grid.Row="1" FontFamily="Montserrat" FontSize="18" Foreground="White" Text="Welcome rent a car !!!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Row="2" Text="Username" Foreground="White" FontWeight="Thin" FontSize="12"/>
+                    <TextBox Name="RegisterUsernameTxtbox" Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3" VerticalAlignment="Top">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="4" />
+                    <TextBlock Grid.Row="5" Text="Password" Foreground="White" FontWeight="Thin" FontSize="12"  KeyDown="EnterKey"/>
+                    <TextBox Text="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" VerticalAlignment="Top">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="7" />
+
+
+                    <TextBlock Grid.Row="9" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Or"/>
+                    <Button Name="RegisterSignUpButton" Command="{Binding RegisterCommand}" Grid.Row="10" Content="Sign Up with Email" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="20"/>
+                                <Setter Property="Width" Value="140"/>
+                                <Setter Property="Height" Value="30"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#312244"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="10"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True"/>
+
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+                </Grid>
+        </Grid>
         </Grid>
     </Grid>
 </Window>
