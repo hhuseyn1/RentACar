@@ -63,6 +63,15 @@ def GetUser(Username: str, Password: str):
 
             LastUser = Cursor.fetchall()[0]
             return LastUser
+    except KeyError:
+        try:
+            Cursor.execute(f"SELECT * FROM users WHERE Username = '{Username}' AND Password = '{Password}'")
+            Connection.commit()
+
+            LastUser = Cursor.fetchall()[0]
+            return LastUser
+        except Exception:
+            return []
     except Exception:
         return []
         
