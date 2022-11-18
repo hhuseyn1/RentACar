@@ -79,7 +79,7 @@
 
                 </Button>
             </Grid>
-            <Grid  Grid.Row="1" Name="GridLogin" Visibility="Hidden">
+            <Grid  Grid.Row="1" Name="GridLogin" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -188,7 +188,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="1" Name="GridRegister" Visibility="Visible">
+            <Grid Grid.Row="1" Name="GridRegister" Visibility="Hidden">
                 <StackPanel>
                     <Image Source="/Images/Back.png" Width="50" Height="50" HorizontalAlignment="Left" MouseLeftButtonDown="GoBack" Margin="10 0 0 0"/>
                     <Image Source="/Images/StepLogo.jpg" Width="160" Margin="0 0 0 10"/>
