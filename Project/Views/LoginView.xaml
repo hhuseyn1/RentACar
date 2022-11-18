@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Project.Views"
         xmlns:viewModel="clr-namespace:Project.ViewModel"
         mc:Ignorable="d"
-        Title="LoginView" WindowStyle="None" Background="Transparent" Height="550" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AllowsTransparency="True" BorderThickness="0">
+        Title="LoginView" WindowStyle="None" Background="Transparent" Height="650" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AllowsTransparency="True" BorderThickness="0">
     <Window.DataContext>
         <viewModel:LoginViewModel/>
     </Window.DataContext>
@@ -79,7 +79,7 @@
 
                 </Button>
             </Grid>
-            <Grid  Grid.Row="1" Name="GridLogin" Visibility="Visible">
+            <Grid  Grid.Row="1" Name="GridLogin" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -155,7 +155,7 @@
                     <Line Grid.Row="9" X1="66" X2="120" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
                     <Line Grid.Row="9" X1="150" X2="200" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
                     <TextBlock Grid.Row="9" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Or"/>
-                    <Button Name="SignUpButton" Command="{Binding RegisterCommand}" Grid.Row="10" Click="RegisterClick" Content="Sign Up with Email" >
+                    <Button Name="SignUpButton" Grid.Row="10" Click="RegisterClick" Content="Sign Up with Email" >
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="20"/>
@@ -188,69 +188,105 @@
 
             </Grid>
 
-            <Grid Grid.Row="1" Name="GridRegister" Visibility="Hidden">
+            <Grid Grid.Row="1" Name="GridRegister" Visibility="Visible">
                 <StackPanel>
                     <Image Source="/Images/Back.png" Width="50" Height="50" HorizontalAlignment="Left" MouseLeftButtonDown="GoBack" Margin="10 0 0 0"/>
                     <Image Source="/Images/StepLogo.jpg" Width="160" Margin="0 0 0 10"/>
                     <TextBlock Text="Firstname" Foreground="White" Margin="0 0 140 0" HorizontalAlignment="Center" />
-                    <TextBox Name="FirstnameTxtbox" Text="{Binding FirstName,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
+                    <TextBox Name="FirstnameTxtbox" Text="{Binding RegisterName,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0 0 190 0" />
                     <TextBlock Text="Lastname" Foreground="White" Margin="0 0 140 0" HorizontalAlignment="Center" />
-                    <TextBox Name="LastnameTxtbox" Text="{Binding Lastname,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
+                    <TextBox Name="LastnameTxtbox" Text="{Binding RegisterLastname,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0 0 190 0" />
 
                     <TextBlock Text="Email" Foreground="White" Margin="0 0 160 0" HorizontalAlignment="Center" />
-                    <TextBox Name="EmailTxtbox" Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
+                    <TextBox Name="EmailTxtbox" Text="{Binding RegisterEmail,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0 0 190 0" />
 
                     <TextBlock Text="Username" Foreground="White" Margin="0 0 140 0" HorizontalAlignment="Center" />
-                    <TextBox Name="UserNameTxtbox" Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
+                    <TextBox Name="UserNameTxtbox" Text="{Binding RegisterUsername,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0 0 190 0" />
 
                     <TextBlock Text="Password" Foreground="White" Margin="0 0 140 0" HorizontalAlignment="Center" />
-                    <TextBox Name="PasswordTxtbox" Text="{Binding Password,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
+                    <TextBox Name="PasswordTxtbox" Text="{Binding RegisterPassword,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0 0 190 0" />
+
 
                     <TextBlock Text="Confirm password" Foreground="White" Margin="0 0 95 0" HorizontalAlignment="Center" />
-                    <TextBox Name="ConfirmPasswordTxtbox" Text="{Binding Password,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
+                    <TextBox Name="ConfirmPasswordTxtbox" Text="{Binding RegisterRePassword,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0 0 190 0" />
-                    <Button Name="RegisterSignUp" Command="{Binding RegisterCommand}" Click="RegisterClick" Content="Sign Up" >
+                    <TextBlock Text="Email Verification" Foreground="White" Margin="0 0 95 0" HorizontalAlignment="Center" />
+                    <Grid Height="30" Width="445">
+
+                        <TextBox x:Name="EmailVerification" Text="{Binding RegisterVerification, UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+
+                        <Button x:Name="SendVerificationCode" Command="{Binding GetVerification}" Content="Get Verification Code" Margin="162,-4,-162,4" >
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="15"/>
+                                    <Setter Property="Width" Value="110"/>
+                                    <Setter Property="Height" Value="30"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#312244"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="10"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True"/>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+                    </Grid>
+                    <Button x:Name="RegisterSignUp" Command="{Binding RegisterCommand}" Click="RegisterClick" Content="Sign Up" >
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="20"/>
@@ -259,7 +295,7 @@
                             </Style>
                         </Button.Resources>
                         <Button.Style>
-                            <Style TargetType="Button">
+                            <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="#312244"/>
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="FontSize" Value="10"/>
@@ -271,7 +307,7 @@
                             </Style>
                         </Button.Style>
                         <Button.Template>
-                            <ControlTemplate TargetType="Button">
+                            <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </Border>
@@ -279,6 +315,8 @@
                         </Button.Template>
 
                     </Button>
+
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0 0 190 0" />
 
                 </StackPanel>
 

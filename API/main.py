@@ -50,6 +50,17 @@ FetchData()
 def read_root():
     return {"Hello": "World"}
 
+@app.get("/Register")
+# 'http://127.0.0.1:8000/GetUser?Username=Salam&Password=Adam'
+def Register(Firstname: str, Lastname: str, Email: str, Username: str, Password: str):
+    try:
+        Cursor.execute(f"INSERT INTO users (Username, Password, Name, Lastname, Email) VALUES ('{Username}', '{Password}', '{Firstname}', '{Lastname}', '{Email}')")
+        Connection.commit()
+        return "Succesfully registered"
+    except Exception:
+        return "Same Username"
+    #LastUser = Cursor.fetchall()[0]
+
 @app.get("/GetUser")
 # 'http://127.0.0.1:8000/GetUser?Username=Salam&Password=Adam'
 def GetUser(Username: str, Password: str):
