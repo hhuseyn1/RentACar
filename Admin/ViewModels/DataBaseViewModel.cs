@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -14,15 +15,8 @@ namespace Admin.ViewModels;
 
 public partial class DataBaseViewModel : ObservableObject, INavigationAware, INotifyPropertyChanged
 {
-    //[ObservablePropertyAttribute]
-    //public string _selectedUser;
-
-    private int _selectedIndex;
-    public int SelectedIndex
-    {
-        get { return _selectedIndex; }
-        set { _selectedIndex = value; NotifyPropertyChanged(); }
-    }
+    private int SelectedIndex;
+    private bool IsSelectedItemVehicle = false;
 
     private ObservableCollection<User> _users;
     public ObservableCollection<User> Users
@@ -67,14 +61,62 @@ public partial class DataBaseViewModel : ObservableObject, INavigationAware, INo
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     [RelayCommand]
-    public void RemoveUser()
+    public void RemoveUser(object obj)
     {
-        var messageBox = new Wpf.Ui.Controls.MessageBox();
+        if (obj is not null)
+        {
+            int Index = int.Parse(obj.ToString());
+            var messageBox = new Wpf.Ui.Controls.MessageBox();
 
-        messageBox.ButtonLeftName = SelectedIndex.ToString();
-        messageBox.ButtonRightName = "Just close me";
+            messageBox.ButtonLeftName = "Delete";
+            messageBox.ButtonRightName = "Nevermind";
 
+            messageBox.ButtonLeftClick += MessageBox_LeftButtonClick;
+            messageBox.ButtonRightClick += MessageBox_RightButtonClick;
 
-        messageBox.Show("Something weird", "May happen");
+            SelectedIndex = Index;
+
+            messageBox.Show("CarRental - Admin", $"Do you want delete User: {User.AllUsers[Index].Username}");
+        }    
     }
+
+    [RelayCommand]
+    public void RemoveVehicle(object obj)
+    {
+        if (obj is not null)
+        {
+            int Index = int.Parse(obj.ToString());
+            var messageBox = new Wpf.Ui.Controls.MessageBox();
+
+            messageBox.ButtonLeftName = "Delete";
+            messageBox.ButtonRightName = "Nevermind";
+
+            messageBox.ButtonLeftClick += MessageBox_LeftButtonClick;
+            messageBox.ButtonRightClick += MessageBox_RightButtonClick;
+
+            SelectedIndex = Index;
+            IsSelectedItemVehicle = true;
+
+            messageBox.Show("CarRental - Admin", $"Do you want delete Vehicle: {Car.AllCars[Index].Plate}");
+        }
+    }
+
+    private async void MessageBox_LeftButtonClick(object sender, System.Windows.RoutedEventArgs e)
+    {
+        if (IsSelectedItemVehicle)
+        {
+            await new HttpClient().GetStringAsync($"http://localhost:8000/DeleteVehicle?Id={SelectedIndex + 1}");
+            Car.AllCars.Remove(Car.AllCars[SelectedIndex]);
+            IsSelectedItemVehicle = false;
+        }
+        else
+        {
+            await new HttpClient().GetStringAsync($"http://localhost:8000/DeleteUser?Username={User.AllUsers[SelectedIndex].Username}");
+            User.AllUsers.Remove(User.AllUsers[SelectedIndex]);
+        }
+        Cars = Car.AllCars;
+        Users = User.AllUsers;
+        (sender as Wpf.Ui.Controls.MessageBox)?.Close();
+    }
+    private void MessageBox_RightButtonClick(object sender, System.Windows.RoutedEventArgs e) => (sender as Wpf.Ui.Controls.MessageBox)?.Close();
 }

@@ -14,7 +14,6 @@ namespace Admin.ViewModels;
 
 public class UsersViewModel : ObservableObject, INavigationAware, INotifyPropertyChanged
 {
-    DispatcherTimer timer = new DispatcherTimer();
     public ObservableCollection<User> Users
     {
         get { return User.AllUsers; }
@@ -25,9 +24,7 @@ public class UsersViewModel : ObservableObject, INavigationAware, INotifyPropert
 
     public UsersViewModel()
     {
-        timer.Interval = new TimeSpan(0, 0, 0, 1);
-        timer.Tick += new EventHandler(timerTick_event);
-        timer.Start();
+        GetData();
     }
 
     public Visibility Visibility
@@ -45,8 +42,6 @@ public class UsersViewModel : ObservableObject, INavigationAware, INotifyPropert
     {
 
     }
-
-    private void timerTick_event(object? sender, EventArgs e) => GetData();
 
     private async void GetData()
     {

@@ -72,6 +72,25 @@ def GetUser(Username: str, Password: str):
     except Exception:
         return []
         
+@app.get("/DeleteUser")
+# 'http://127.0.0.1:8000/DeleteUser?Username=Salam&Password=Adam'
+def DeleteUser(Username: str):
+    try:
+        Cursor.execute(f"DELETE FROM users WHERE Username = '{Username}'")
+        Connection.commit()
+    except Exception:
+        print("No Result")
+    return
+
+@app.get("/DeleteVehicle")
+# 'http://127.0.0.1:8000/DeleteUser?Username=Salam&Password=Adam'
+def DeleteUser(Id: int):
+    try:
+        Cursor.execute(f"DELETE FROM cars WHERE Id = '{Id}'")
+        Connection.commit()
+    except Exception:
+        print("No Result")
+    return
 
 @app.get("/GetCars")
 def GetCars():

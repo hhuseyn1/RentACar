@@ -67,7 +67,7 @@
                 <Grid x:Name="UsersRemove" Grid.Column="0" Margin="10">
                     <ScrollViewer>
                         <StackPanel>
-                            <ListBox Grid.Row="1" ItemsSource="{Binding Users}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox x:Name="UsersRemoveListBox" Grid.Row="1" ItemsSource="{Binding Users}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
@@ -86,7 +86,7 @@
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                             </ListBox>
-                            <Button Command="{Binding RemoveUserCommand}" Margin="10" Content="Remove User" HorizontalAlignment="Center"></Button>
+                            <Button Command="{Binding RemoveUserCommand}" CommandParameter="{Binding ElementName=UsersRemoveListBox,Path=SelectedIndex}" Margin="10" Content="Remove User" HorizontalAlignment="Center"></Button>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
@@ -94,7 +94,7 @@
                 <Grid x:Name="VehiclesRemove" Grid.Column="1" Margin="10">
                     <ScrollViewer>
                         <StackPanel>
-                            <ListBox Grid.Row="1" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedIndex="{Binding SelectedIndex}">
+                            <ListBox x:Name="VehicleRemoveListBox" Grid.Row="1" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
@@ -112,7 +112,7 @@
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                             </ListBox>
-                            <Button Margin="10" Content="Remove Vehicle" HorizontalAlignment="Center"></Button>
+                            <Button Command="{Binding RemoveVehicleCommand}" CommandParameter="{Binding ElementName=VehicleRemoveListBox,Path=SelectedIndex}" Margin="10" Content="Remove Vehicle" HorizontalAlignment="Center"></Button>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

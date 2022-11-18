@@ -21,8 +21,6 @@ namespace Admin.ViewModels;
 
 public partial class DashboardViewModel : ObservableObject, INavigationAware, INotifyPropertyChanged
 {
-    DispatcherTimer timer = new DispatcherTimer();
-
     public ObservableCollection<Car> Cars
     {
         get { return Car.AllCars; }
@@ -41,9 +39,7 @@ public partial class DashboardViewModel : ObservableObject, INavigationAware, IN
 
     public DashboardViewModel()
     {
-        timer.Interval = new TimeSpan(0, 0, 0, 1);
-        timer.Tick += new EventHandler(timerTick_event);
-        timer.Start();
+        GetData();
     }
 
     public async void OnNavigatedTo()
@@ -51,23 +47,16 @@ public partial class DashboardViewModel : ObservableObject, INavigationAware, IN
         
     }
 
-    private void timerTick_event(object? sender, EventArgs e) => GetData();
+    public void OnNavigatedFrom()
+    {
+
+    }
 
     private async void GetData()
     {
         Cars = JsonConvert.DeserializeObject<ObservableCollection<Car>>(await new HttpClient().GetStringAsync("http://localhost:8000/GetCars"));
         Visibility = System.Windows.Visibility.Hidden;
-    }
-
-    public void OnNavigatedFrom()
-    {
-    }
-
-    [RelayCommand]
-    private void OnAddCommand()
-    {
-
-    }
+    } 
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
