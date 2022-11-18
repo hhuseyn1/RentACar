@@ -60,6 +60,18 @@ public partial class LoginView : Window
         
     }
 
+    private void RegisterClick(object sender, RoutedEventArgs e)
+    {
+        GridLogin.Visibility = Visibility.Hidden;
+        GridRegister.Visibility = Visibility.Visible;
+    }
+
+    private void GoBack(object sender, MouseButtonEventArgs e)
+    {
+        GridLogin.Visibility = Visibility.Visible;
+        GridRegister.Visibility = Visibility.Hidden;
+    }
+
     //private async void Button_MouseLeave(object sender, MouseEventArgs e)
     //{
     //    if (sender is Button btn)
