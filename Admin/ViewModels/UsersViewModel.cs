@@ -22,6 +22,14 @@ public class UsersViewModel : ObservableObject, INavigationAware, INotifyPropert
     }
 
     public Visibility _Visibility;
+
+    public UsersViewModel()
+    {
+        timer.Interval = new TimeSpan(0, 0, 0, 1);
+        timer.Tick += new EventHandler(timerTick_event);
+        timer.Start();
+    }
+
     public Visibility Visibility
     {
         get { return _Visibility; }
@@ -33,19 +41,17 @@ public class UsersViewModel : ObservableObject, INavigationAware, INotifyPropert
         
     }
 
+    public void OnNavigatedTo()
+    {
+
+    }
+
     private void timerTick_event(object? sender, EventArgs e) => GetData();
 
     private async void GetData()
     {
         Users = JsonConvert.DeserializeObject<ObservableCollection<User>>(await new HttpClient().GetStringAsync("http://localhost:8000/GetUsers"));
         Visibility = System.Windows.Visibility.Hidden;
-    }
-
-    public void OnNavigatedTo()
-    {
-        timer.Interval = new TimeSpan(0, 0, 0, 1);
-        timer.Tick += new EventHandler(timerTick_event);
-        timer.Start();
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

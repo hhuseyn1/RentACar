@@ -39,11 +39,16 @@ public partial class DashboardViewModel : ObservableObject, INavigationAware, IN
     [ObservableProperty]
     private int _counter = 0;
 
-    public async void OnNavigatedTo()
+    public DashboardViewModel()
     {
         timer.Interval = new TimeSpan(0, 0, 0, 1);
         timer.Tick += new EventHandler(timerTick_event);
         timer.Start();
+    }
+
+    public async void OnNavigatedTo()
+    {
+        
     }
 
     private void timerTick_event(object? sender, EventArgs e) => GetData();
