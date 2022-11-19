@@ -1,7 +1,6 @@
 import sys
 import subprocess
 import pkg_resources
-from math import trunc
 
 required = {'uvicorn', 'mysql.connector', 'fastapi'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
@@ -22,7 +21,6 @@ UserData = {}
 LastUser = {}
 
 # uvicorn RentACar:app --reload
-# 'http://127.0.0.1:8000/DeleteUser?Username=Salam&Password=Adam'
 
 DbConnection = {
     "Host": "176.53.69.151",
@@ -43,6 +41,8 @@ def FetchData():
     CarData = Cursor.fetchall()
     Cursor.execute(f"SELECT * FROM users")
     Connection.commit()
+    UserData = Cursor.fetchall()
+    threading.Timer(3.0, FetchData).start()
 
 FetchData()
 
@@ -51,6 +51,7 @@ def read_root():
     return {"Hello": "World"}
 
 @app.get("/Register")
+# 'http://127.0.0.1:8000/GetUser?Username=Salam&Password=Adam'
 def Register(Firstname: str, Lastname: str, Email: str, Username: str, Password: str):
     try:
         Cursor.execute(f"INSERT INTO users (Username, Password, Name, Lastname, Email) VALUES ('{Username}', '{Password}', '{Firstname}', '{Lastname}', '{Email}')")
@@ -58,8 +59,10 @@ def Register(Firstname: str, Lastname: str, Email: str, Username: str, Password:
         return "Succesfully registered"
     except Exception:
         return "Same Username"
+    #LastUser = Cursor.fetchall()[0]
 
 @app.get("/GetUser")
+# 'http://127.0.0.1:8000/GetUser?Username=Salam&Password=Adam'
 def GetUser(Username: str, Password: str):
     global LastUser
     try:
@@ -82,10 +85,9 @@ def GetUser(Username: str, Password: str):
             return []
     except Exception:
         return []
-
-
-
+        
 @app.get("/DeleteUser")
+# 'http://127.0.0.1:8000/DeleteUser?Username=Salam&Password=Adam'
 def DeleteUser(Username: str):
     try:
         Cursor.execute(f"DELETE FROM users WHERE Username = '{Username}'")
@@ -94,15 +96,9 @@ def DeleteUser(Username: str):
         print("No Result")
     return
 
-@app.get("/AddVehicle")
-def AddVehicle(Make: str, Model: str, Plate: str, Price: str):
-    Cursor.execute(f"INSERT INTO cars (Make, Model, Plate, Price, Page) VALUES ('{Make}', '{Model}', '{Plate}', '{Price}', '{trunc(len(CarData)/10) + 1}')")
-    Connection.commit()
-    FetchData()
-    return "Succesfully Added"
-
 @app.get("/DeleteVehicle")
-def DeleteVehicle(Id: int):
+# 'http://127.0.0.1:8000/DeleteUser?Username=Salam&Password=Adam'
+def DeleteUser(Id: int):
     try:
         Cursor.execute(f"DELETE FROM cars WHERE Id = '{Id}'")
         Connection.commit()
@@ -119,11 +115,6 @@ def GetCars():
 def GetCars():
     global UserData
     return UserData 
-
-@app.get("/Test")
-def GetCars():
-    global UserData
-    return len(CarData)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
