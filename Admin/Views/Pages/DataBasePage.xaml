@@ -26,14 +26,14 @@
                     <StackPanel Margin="10">
                         <TextBlock Text="Add Vehicle" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="Make" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBox Margin="5"></TextBox>
+                        <TextBox Text="{Binding Make}" Margin="5"></TextBox>
                         <TextBlock Text="Model" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBox Margin="5"></TextBox>
+                        <TextBox Text="{Binding Model}" Margin="5"></TextBox>
                         <TextBlock Text="Plate" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBox Margin="5"></TextBox>
+                        <TextBox Text="{Binding Plate}" Margin="5"></TextBox>
                         <TextBlock Text="Price" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBox Margin="5"></TextBox>
-                        <Button Margin="5" Content="Add" FontSize="20" HorizontalAlignment="Center"/>
+                        <TextBox Text="{Binding Price}" Margin="5"></TextBox>
+                        <Button Command="{Binding AddVehicleCommand}" Margin="5" Content="Add" FontSize="20" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
                 <Grid x:Name="Users" Grid.Column="1">
