@@ -86,6 +86,11 @@ public partial class DataBaseViewModel : ObservableObject, INavigationAware, INo
         }
     }
 
+    private void MessageBox_RightButtonClickAddVehicle(object sender, RoutedEventArgs e)
+    {
+        (sender as Wpf.Ui.Controls.MessageBox)?.Close();
+    }
+
     [RelayCommand]
     public void RemoveUser(object obj)
     {
