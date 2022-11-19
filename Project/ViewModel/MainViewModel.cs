@@ -52,7 +52,8 @@ public class MainViewModel : ViewModelBase
         PrevPage = new RelayCommand(ExecutePrevCommand, CanExecutePrecCommand);
         NextPage = new RelayCommand(ExecuteNextCommand, CanExecuteNextCommand);
         userRepository = new UserRepository();
-		LoadCurrentUserData();
+        Cars.Add(new Car());
+		//LoadCurrentUserData();
 	}
 
     private async void LoadCurrentUserData()

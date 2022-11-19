@@ -72,6 +72,11 @@ public partial class LoginView : Window
         GridRegister.Visibility = Visibility.Hidden;
     }
 
+    private void MouseEnter(object sender, MouseEventArgs e)
+    {
+        
+    }
+
     //private async void Button_MouseLeave(object sender, MouseEventArgs e)
     //{
     //    if (sender is Button btn)

@@ -121,7 +121,7 @@
                     </TextBox>
                     <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="7" />
 
-                    <Button Command="{Binding LoginCommand}" Grid.Row="8"  Content="LOG IN">
+                    <Button Command="{Binding LoginCommand}" Grid.Row="8"   Content="LOG IN">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="20"/>
@@ -131,13 +131,13 @@
                         </Button.Resources>
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#144552"/>
+                                <Setter Property="Background" Value="#312244"/>
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="FontSize" Value="10"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#312244"></Setter>
+                                        <Setter Property="Background" Value="#149578"></Setter>
                                     </Trigger>
                                 </Style.Triggers>
 
@@ -155,7 +155,7 @@
                     <Line Grid.Row="9" X1="66" X2="120" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
                     <Line Grid.Row="9" X1="150" X2="200" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
                     <TextBlock Grid.Row="9" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Or"/>
-                    <Button Name="SignUpButton" Grid.Row="10" Click="RegisterClick" Content="Sign Up with Email" >
+                    <Button Name="SignUpButton" MouseEnter="MouseEnter" Grid.Row="10" Click="RegisterClick" Content="Sign Up with Email" >
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="20"/>
@@ -169,8 +169,9 @@
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="FontSize" Value="10"/>
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True"/>
-
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#149578"></Setter>
+                                    </Trigger>
                                 </Style.Triggers>
 
                             </Style>
@@ -270,8 +271,9 @@
                                     <Setter Property="Foreground" Value="White"/>
                                     <Setter Property="FontSize" Value="10"/>
                                     <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True"/>
-
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#149578"></Setter>
+                                        </Trigger>
                                     </Style.Triggers>
 
                                 </Style>
@@ -300,8 +302,9 @@
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="FontSize" Value="10"/>
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True"/>
-
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#149578"></Setter>
+                                    </Trigger>
                                 </Style.Triggers>
 
                             </Style>
