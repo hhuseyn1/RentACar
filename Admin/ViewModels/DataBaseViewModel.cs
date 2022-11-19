@@ -18,6 +18,15 @@ public partial class DataBaseViewModel : ObservableObject, INavigationAware, INo
     private int SelectedIndex;
     private bool IsSelectedItemVehicle = false;
 
+    [ObservableProperty]
+    private string _make;
+    [ObservableProperty]
+    private string _model;
+    [ObservableProperty]
+    private string _plate;
+    [ObservableProperty]
+    private string _price;
+
     private ObservableCollection<User> _users;
     public ObservableCollection<User> Users
     {
@@ -59,6 +68,23 @@ public partial class DataBaseViewModel : ObservableObject, INavigationAware, INo
 
     public void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+    [RelayCommand]
+    public void AddVehicle(object obj)
+    {
+        if (!string.IsNullOrWhiteSpace(Make) && !string.IsNullOrWhiteSpace(Model) && !string.IsNullOrWhiteSpace(Plate) && !string.IsNullOrWhiteSpace(Price))
+        {
+            var messageBox = new Wpf.Ui.Controls.MessageBox();
+
+            messageBox.ButtonLeftName = "Delete";
+            messageBox.ButtonRightName = "Nevermind";
+
+            messageBox.ButtonLeftClick += MessageBox_LeftButtonClick;
+            messageBox.ButtonRightClick += MessageBox_RightButtonClickAddVehicle;
+
+            messageBox.Show("CarRental - Admin", "Test");
+        }
+    }
 
     [RelayCommand]
     public void RemoveUser(object obj)
