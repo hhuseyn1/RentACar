@@ -1,5 +1,4 @@
 ﻿using Project.Views;
-using System.Threading;
 using System.Windows;
 
 namespace Project;
@@ -8,9 +7,7 @@ public partial class App : Application
 {
     protected void ApplicationStartup(object sender, StartupEventArgs e)
     {
-        LoadindView view = new LoadindView();
-        view.Show();
-        
+       
         var loginView = new LoginView();
         loginView.Show();
          loginView.IsVisibleChanged += (s, ev) =>
@@ -22,5 +19,5 @@ public partial class App : Application
              loginView.Close();
              }
         };
-        }
+    }
 }

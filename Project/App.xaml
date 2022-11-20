@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:Project"
              Startup="ApplicationStartup">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Dictionaries/LoginViewCustomRD.xaml"/>
+                <ResourceDictionary Source="/Dictionaries/LoadingViewCustomRD.xaml"/>
+                <ResourceDictionary Source="/Dictionaries/MainViewCustomRD.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

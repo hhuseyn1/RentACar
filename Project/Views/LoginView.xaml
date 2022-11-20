@@ -17,7 +17,7 @@
         <Binding Path="IsVisible" Mode="TwoWay" Converter="{StaticResource BoolToVisib}"/>
     </Window.Visibility>
     <Grid>
-        <Border CornerRadius="50" BorderThickness="10">
+        <Border Style="{StaticResource Background}">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1.4,0">
                     <GradientStop Color="#312244" Offset="0"/>
@@ -37,47 +37,10 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="LOG IN"  Foreground="White" FontSize="15" Margin="30 10 0 0" VerticalAlignment="Center"/>
-                <Button Foreground="White" Grid.Column="1" Name="Minimize" Width="30" Height="30" Margin="30 0 0 0" Content="-"  FontSize="15" Click="Minimize_Close_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#312244"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Gray"></Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="LOG IN" Style="{StaticResource LogIn}"/>
+                <Button Grid.Column="1" Name="Minimize" Content="-" Template="{DynamicResource Minimize}" Click="Minimize_Close_Click" Style="{DynamicResource MinClose}" />
+                <Button Grid.Column="2" Template="{DynamicResource Minimize}"  Style="{DynamicResource Close}" Name="Close" Margin="10 0 0 0" Content="x"  Click="Minimize_Close_Click"/>
 
-                </Button>
-                <Button Grid.Column="2" Foreground="White"  Name="Close" Width="30" Height="30" Margin="10 0 0 0" Content="x" FontSize="15" Click="Minimize_Close_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#312244"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Red"></Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-
-                </Button>
             </Grid>
             <Grid  Grid.Row="1" Name="GridLogin" Visibility="Visible">
                 <Grid.ColumnDefinitions>
