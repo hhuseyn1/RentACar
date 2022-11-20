@@ -12,8 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Dictionaries\LoginViewCustomRD" />
-    <None Remove="Dictionaries\MainViewCustomRD" />
     <None Remove="Images\Back.png" />
     <None Remove="Images\Car1.png" />
     <None Remove="Images\Car2.png" />
@@ -26,11 +24,6 @@
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="Dictionaries\LoginViewCustomRD" />
-    <Page Include="Dictionaries\MainViewCustomRD" />
   </ItemGroup>
 
   <ItemGroup>
