@@ -1,17 +1,13 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Project.Model;
-using Project.Repositories;
 using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
-using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using System.Threading;
-using System.Windows;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace Project.ViewModel;
 

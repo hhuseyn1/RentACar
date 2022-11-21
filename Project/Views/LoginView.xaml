@@ -38,11 +38,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="LOG IN" Style="{StaticResource LogIn}"/>
-                <Button Grid.Column="1" Name="Minimize" Content="-" Template="{DynamicResource Minimize}" Click="Minimize_Close_Click" Style="{DynamicResource MinClose}" />
+                
+                <Button Grid.Column="1" Name="Minimize" Content="-" Template="{DynamicResource Minimize}" Click="Minimize_Close_Click" Style="{DynamicResource Min}" ></Button>
                 <Button Grid.Column="2" Template="{DynamicResource Minimize}"  Style="{DynamicResource Close}" Name="Close" Margin="10 0 0 0" Content="x"  Click="Minimize_Close_Click"/>
 
             </Grid>
-            <Grid  Grid.Row="1" Name="GridLogin" Visibility="Visible">
+            <Grid  Grid.Row="1" Name="GridLogin" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -64,8 +65,9 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Source="/Images/StepLogo.jpg" Width="250"/>
-                    <TextBlock Grid.Row="1" FontFamily="Montserrat" FontSize="18" Foreground="White" Text="Welcome rent a car !!!" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Row="2" Text="Username" Foreground="White" FontWeight="Thin" FontSize="12"/>
+                    <TextBlock Grid.Row="1" Style="{StaticResource Welcome}"/>
+                    <TextBlock Grid.Row="2" Style="{StaticResource Username}"/>
+
                     <TextBox Name="UsernameTxtbox" Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
@@ -73,8 +75,11 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="4" />
-                    <TextBlock Grid.Row="5" Text="Password" Foreground="White" FontWeight="Thin" FontSize="12"  KeyDown="EnterKey"/>
+                    
+                    <TextBlock Style="{StaticResource Error}" Grid.Row="4" />
+                    
+                    <TextBlock Grid.Row="5" Text="Password" Style="{StaticResource Username}"/>
+                    
                     <TextBox Text="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
@@ -82,77 +87,23 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBlock Text="{Binding ErrorMessage}" Foreground="OrangeRed" FontSize="12" TextWrapping="Wrap" Grid.Row="7" />
+                    
+                    <TextBlock Style="{StaticResource Error}" Grid.Row="7" />
 
-                    <Button Command="{Binding LoginCommand}" Grid.Row="8"   Content="LOG IN">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="20"/>
-                                <Setter Property="Width" Value="140"/>
-                                <Setter Property="Height" Value="30"/>
-                            </Style>
-                        </Button.Resources>
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#312244"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontSize" Value="10"/>
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#149578"></Setter>
-                                    </Trigger>
-                                </Style.Triggers>
+                    <Button Command="{Binding LoginCommand}" Style="{StaticResource LOG IN}" Template="{StaticResource LOGIN}" Grid.Row="8"/>
 
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-
-                    </Button>
                     <Line Grid.Row="9" X1="66" X2="120" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
                     <Line Grid.Row="9" X1="150" X2="200" Y1="10" Y2="10" Stroke="White" StrokeThickness="1"/>
-                    <TextBlock Grid.Row="9" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Or"/>
-                    <Button Name="SignUpButton" MouseEnter="MouseEnter" Grid.Row="10" Click="RegisterClick" Content="Sign Up with Email" >
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="20"/>
-                                <Setter Property="Width" Value="140"/>
-                                <Setter Property="Height" Value="30"/>
-                            </Style>
-                        </Button.Resources>
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#312244"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontSize" Value="10"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#149578"></Setter>
-                                    </Trigger>
-                                </Style.Triggers>
+                    
+                    <TextBlock Grid.Row="9" Style="{StaticResource Or}"/>
 
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-
-                    </Button>
+                    <Button Name="SignUpButton" Style="{StaticResource LOG IN}" Template="{StaticResource LOGIN}" MouseEnter="MouseEnter" Grid.Row="10" Click="RegisterClick" Content="Sign Up with Email"/>
+                    
                 </Grid>
 
             </Grid>
 
-            <Grid Grid.Row="1" Name="GridRegister" Visibility="Hidden">
+            <Grid Grid.Row="1" Name="GridRegister" Visibility="Visible">
                 <StackPanel>
                     <Image Source="/Images/Back.png" Width="50" Height="50" HorizontalAlignment="Left" MouseLeftButtonDown="GoBack" Margin="10 0 0 0"/>
                     <Image Source="/Images/StepLogo.jpg" Width="160" Margin="0 0 0 10"/>
@@ -164,7 +115,9 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
+                    
                     <TextBlock Text="Lastname" Foreground="White" Margin="0 0 140 0" HorizontalAlignment="Center" />
+                    
                     <TextBox Name="LastnameTxtbox" Text="{Binding RegisterLastname,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
@@ -174,6 +127,7 @@
                     </TextBox>
 
                     <TextBlock Text="Email" Foreground="White" Margin="0 0 160 0" HorizontalAlignment="Center" />
+                    
                     <TextBox Name="EmailTxtbox" Text="{Binding RegisterEmail,UpdateSourceTrigger=PropertyChanged}" Width="200" VerticalAlignment="Top">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
@@ -220,36 +174,8 @@
                             </TextBox.Resources>
                         </TextBox>
 
-                        <Button x:Name="SendVerificationCode" Command="{Binding GetVerification}" Content="Get Verification Code" Margin="162,-4,-162,4" >
-                            <Button.Resources>
-                                <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="15"/>
-                                    <Setter Property="Width" Value="110"/>
-                                    <Setter Property="Height" Value="30"/>
-                                </Style>
-                            </Button.Resources>
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Setter Property="Background" Value="#312244"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="FontSize" Value="10"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#149578"></Setter>
-                                        </Trigger>
-                                    </Style.Triggers>
+                        <Button x:Name="SendVerificationCode" Command="{Binding GetVerification}"  Style="{DynamicResource Verification}" />
 
-                                </Style>
-                            </Button.Style>
-                            <Button.Template>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                        </Button>
                     </Grid>
                     <Button x:Name="RegisterSignUp" Command="{Binding RegisterCommand}" Click="RegisterClick" Content="Sign Up" >
                         <Button.Resources>

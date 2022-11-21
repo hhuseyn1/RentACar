@@ -47,6 +47,58 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
+    <Style x:Key="Welcome" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Text" Value="Welcome rent a car !!!"/>
+    </Style>
+
+    <Style x:Key="Username" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Text" Value="Username"/>
+    </Style>
+
+    <Style x:Key="Error" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="OrangeRed"/>
+        <Setter Property="Text" Value="{Binding ErrorMessage}"/>
+    </Style>
+
+    <Style x:Key="LOG IN" TargetType="Button">
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Width" Value="140"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Background" Value="#312244"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Content" Value="LOG IN"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#149578"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate TargetType="Button" x:Key="LOGIN">
+        <Border Background="{TemplateBinding Background}" CornerRadius="20">
+            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="Or" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Text" Value="Or"/>
+    </Style>
 
 
+    
+
+    
 </ResourceDictionary>

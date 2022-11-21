@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -12,25 +10,12 @@ public partial class LoginView : Window
     public LoginView()
     {
         InitializeComponent();
+        var bc = new BrushConverter();
+        SendVerificationCode.Background = (Brush)bc.ConvertFrom("#312244");
+
     }
 
-    //private void Button_MouseEnter(object sender, MouseEventArgs e)
-    //{
-    //   if(sender is Button btn)
-    //    {
-    //        if (btn.Name == "Minimize")
-    //        {
-    //            btn.Background = Brushes.LightSlateGray;
-    //        }
-    //        else if (btn.Name == "Close")
-    //        {
-    //            btn.Background = Brushes.Red;
-    //        }
-    //    }
-    //}
-    
-
-
+   
     private void Minimize_Close_Click(object sender, RoutedEventArgs e)
     {
         if (sender is Button btn)
@@ -77,20 +62,4 @@ public partial class LoginView : Window
         
     }
 
-    //private async void Button_MouseLeave(object sender, MouseEventArgs e)
-    //{
-    //    if (sender is Button btn)
-    //    {
-    //        if (btn.Name == "Minimize")
-    //        {
-    //            await Task.Delay(1000);
-    //            btn.Background = Brushes.LightGray;
-    //        }
-    //        else if (btn.Name == "Close")
-    //        {
-    //            await Task.Delay(1000);
-    //            btn.Background = Brushes.LightGray;
-    //        }
-    //    }
-    //}
 }
