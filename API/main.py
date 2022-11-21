@@ -43,6 +43,7 @@ def FetchData():
     CarData = Cursor.fetchall()
     Cursor.execute(f"SELECT * FROM users")
     Connection.commit()
+    UserData = Cursor.fetchall()
 
 FetchData()
 
@@ -83,7 +84,15 @@ def GetUser(Username: str, Password: str):
     except Exception:
         return []
 
-
+@app.get("/AddUser")
+def AddVehicle(Username: str, Password: str, Name: str, Lastname: str, Email: str, IsAdmin: bool):
+    try:
+        Cursor.execute(f"INSERT INTO users (Username, Password, Name, Lastname, Email, IsAdmin) VALUES ('{Username}', '{Password}', '{Name}', '{Lastname}', '{Email}', {IsAdmin})")
+        Connection.commit()
+    except Exception:
+        return "Username Exist!"
+    FetchData()
+    return "Succesfully Added"
 
 @app.get("/DeleteUser")
 def DeleteUser(Username: str):

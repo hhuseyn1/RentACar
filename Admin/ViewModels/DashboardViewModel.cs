@@ -44,7 +44,7 @@ public partial class DashboardViewModel : ObservableObject, INavigationAware, IN
 
     public async void OnNavigatedTo()
     {
-        
+        Cars = Car.AllCars;
     }
 
     public void OnNavigatedFrom()

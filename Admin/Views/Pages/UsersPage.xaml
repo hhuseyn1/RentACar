@@ -22,7 +22,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Label Content="{Binding Id}" ContentStringFormat="ID: {0}"/>
+                        <!--<Label Content="{Binding Id}" ContentStringFormat="ID: {0}"/>-->
                         <Label Content="{Binding Username}" ContentStringFormat="UserName: {0}"/>
                         <Label Content="{Binding Password}" ContentStringFormat="Password: {0}"/>
                         <Label Content="{Binding Name}" ContentStringFormat="Name: {0}"/>

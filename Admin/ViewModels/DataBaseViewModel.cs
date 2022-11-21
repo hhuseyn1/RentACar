@@ -26,6 +26,18 @@ public partial class DataBaseViewModel : ObservableObject, INavigationAware, INo
     private string _plate;
     [ObservableProperty]
     private string _price;
+    [ObservableProperty]
+    private string _username;
+    [ObservableProperty]
+    private string _password;
+    [ObservableProperty]
+    private string _name;
+    [ObservableProperty]
+    private string _lastname;
+    [ObservableProperty]
+    private string _email;
+    [ObservableProperty]
+    private bool _isChecked = false;
 
     private ObservableCollection<User> _users;
     public ObservableCollection<User> Users
@@ -70,24 +82,63 @@ public partial class DataBaseViewModel : ObservableObject, INavigationAware, INo
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     [RelayCommand]
+    public void AddUser(object obj)
+    {
+        if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Lastname) && !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(Email))
+        {
+            var messageBox = new Wpf.Ui.Controls.MessageBox();
+
+            messageBox.ButtonLeftName = "Add";
+            messageBox.ButtonRightName = "Nevermind";
+
+            messageBox.ButtonLeftClick += MessageBox_LeftButtonClickAddUser;
+            messageBox.ButtonRightClick += MessageBox_RightButtonClick;
+
+            messageBox.Show("CarRental - Admin", "Do you want add user?");
+        }
+    }
+
+    private async void MessageBox_LeftButtonClickAddUser(object sender, RoutedEventArgs e)
+    {
+        var result = await new HttpClient().GetStringAsync($"http://localhost:8000/AddUser?Username={Username}&Password={Password}&Name={Name}&Lastname={Lastname}&Email={Email}&IsAdmin={IsChecked}");
+        if (result.ToString().Trim('"').TrimEnd('"') == "Username Exist!")
+        {
+            var messageBox = new Wpf.Ui.Controls.MessageBox();
+
+            messageBox.ButtonLeftName = "Ok";
+            messageBox.ButtonRightName = "Ok";
+
+            messageBox.ButtonLeftClick += MessageBox_RightButtonClick;
+            messageBox.ButtonRightClick += MessageBox_RightButtonClick;
+
+            messageBox.Show("CarRental - Admin", "Username Exist!");
+        } else
+            User.AllUsers.Add(new User() { Username = Username, Password = Password, Name = Name, Lastname = Lastname, Email = Email });
+        
+        (sender as Wpf.Ui.Controls.MessageBox)?.Close();
+    }
+
+    [RelayCommand]
     public void AddVehicle(object obj)
     {
         if (!string.IsNullOrWhiteSpace(Make) && !string.IsNullOrWhiteSpace(Model) && !string.IsNullOrWhiteSpace(Plate) && !string.IsNullOrWhiteSpace(Price))
         {
             var messageBox = new Wpf.Ui.Controls.MessageBox();
 
-            messageBox.ButtonLeftName = "Delete";
+            messageBox.ButtonLeftName = "Add";
             messageBox.ButtonRightName = "Nevermind";
 
-            messageBox.ButtonLeftClick += MessageBox_LeftButtonClick;
-            messageBox.ButtonRightClick += MessageBox_RightButtonClickAddVehicle;
+            messageBox.ButtonLeftClick += MessageBox_LeftButtonClickAddVehicle;
+            messageBox.ButtonRightClick += MessageBox_RightButtonClick;
 
-            messageBox.Show("CarRental - Admin", "Test");
+            messageBox.Show("CarRental - Admin", "Do you want add car?");
         }
     }
 
-    private void MessageBox_RightButtonClickAddVehicle(object sender, RoutedEventArgs e)
+    private async void MessageBox_LeftButtonClickAddVehicle(object sender, RoutedEventArgs e)
     {
+        await new HttpClient().GetStringAsync($"http://localhost:8000/AddVehicle?Make={Make}&Model={Model}&Plate={Plate}&Price={Price}");
+        Car.AllCars.Add(new Car(){ Make = Make, Model = Model, Plate = Plate, Price = Price });
         (sender as Wpf.Ui.Controls.MessageBox)?.Close();
     }
 

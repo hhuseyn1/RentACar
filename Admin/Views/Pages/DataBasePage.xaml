@@ -41,17 +41,17 @@
                         <StackPanel Margin="10">
                             <TextBlock Text="Add User" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Text="Username" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox Margin="5"></TextBox>
+                            <TextBox Text="{Binding Username}" Margin="5"></TextBox>
                             <TextBlock Text="Password" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox Margin="5"></TextBox>
+                            <TextBox Text="{Binding Password}" Margin="5"></TextBox>
                             <TextBlock Text="Name" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox Margin="5"></TextBox>
+                            <TextBox Text="{Binding Name}" Margin="5"></TextBox>
                             <TextBlock Text="Lastname" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox Margin="5"></TextBox>
+                            <TextBox Text="{Binding Lastname}" Margin="5"></TextBox>
                             <TextBlock Text="Email" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox Margin="5"></TextBox>
-                            <CheckBox HorizontalAlignment="Center" Content="Admin"></CheckBox>
-                            <Button Margin="5" Content="Add" FontSize="20" HorizontalAlignment="Center"/>
+                            <TextBox Text="{Binding Email}" Margin="5"></TextBox>
+                            <CheckBox IsChecked="{Binding IsChecked}" HorizontalAlignment="Center" Content="Admin"></CheckBox>
+                            <Button Command="{Binding AddUserCommand}" Margin="5" Content="Add" FontSize="20" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

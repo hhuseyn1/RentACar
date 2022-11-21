@@ -23,7 +23,7 @@
                 <DataTemplate>
                     <StackPanel>
                         <!--<Button Visibility="Hidden" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=DataContext.MyCommand}"/>-->
-                        <Label Content="{Binding Id}" ContentStringFormat="ID: {0}"/>
+                        <!--<Label Content="{Binding Id}" ContentStringFormat="ID: {0}"/>-->
                         <Label Content="{Binding Make}" ContentStringFormat="Make: {0}"/>
                         <Label Content="{Binding Model}" ContentStringFormat="Model: {0}"/>
                         <Label Content="{Binding Plate}" ContentStringFormat="Plate: {0}"/>
