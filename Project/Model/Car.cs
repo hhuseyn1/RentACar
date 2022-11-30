@@ -10,6 +10,7 @@ public class Car
     public string Model { get; set; }
     public string Plate { get; set; }
     public string Price { get; set; }
+    public string Source { get; set; }
 
     public int Page { get; set; }
 }

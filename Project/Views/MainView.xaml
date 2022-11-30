@@ -11,12 +11,24 @@
         <viewModel:MainViewModel/>
     </Window.DataContext>
 
-    <Grid Background="Beige">
-        <Grid.RowDefinitions>
+    <Grid>
+        
+        <Border Style="{StaticResource Background}">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1.4,0">
+                    <GradientStop Color="#312244" Offset="0"/>
+                    <GradientStop Color="#144552" Offset="0.75"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+    <Grid>
+
+            <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" MouseDown="Drag">
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="*"/>
@@ -27,11 +39,13 @@
             <Button Grid.Column="3" Template="{DynamicResource Minimize}"  Style="{DynamicResource Close}" Name="Close" Margin="10 0 0 0" Content="x"  Click="Minimize_Close_Click"/>
         </Grid>
         <Grid Grid.Row="1">
+            
             <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
+                 
                 <StackPanel>
                     <Button x:Name="ViewScreen" Width="250" BorderThickness="1" Margin=" 0 0 0 30" Background="Beige" Foreground="Black" FontSize="20" Content="Cars" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
                     <Button Width="250" BorderThickness="1" Margin=" 0 0 0 30" Background="Beige" Foreground="Black" FontSize="20" Content="Account" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" />
@@ -40,8 +54,8 @@
             </Grid>
             <Grid Name="CarsScreen" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/ParkingZone2D.jpg"></ImageBrush>
-        </Grid.Background>
+                    <ImageBrush ImageSource="/Images/ParkingZone2D.jpg"/>
+                </Grid.Background>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="42*"/>
@@ -107,8 +121,9 @@
             </Grid>
         </Grid>
     </Grid>
-    
-   
-    
+    </Grid>
+
+
+
 
 </Window>

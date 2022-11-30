@@ -15,7 +15,7 @@ public partial class MainView : Window
     private void CarRentScreenClick(object sender, MouseButtonEventArgs e)
     {
         //Current car must send with ctor
-        RentView rent = new(new Car() { Make="Bmw",Model="M5",Price="450"});//Example
+        RentView rent = new(new Car() { Make="Bmw",Model="M5",Price="450",Source= "/Images/DefaultCarImage.jpg" });//Example
         rent.Show();
     }
 
