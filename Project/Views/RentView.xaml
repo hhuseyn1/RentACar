@@ -1,0 +1,32 @@
+﻿<Window x:Class="Project.Views.RentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.Views"
+        mc:Ignorable="d"
+        Title="RentView" Height="380" Width="350" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" BorderThickness="0" >
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="1.8*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#312233" MouseDown="Drag"/>
+        <Grid Grid.Row="1">
+            <Image/>
+        </Grid>
+        <Grid Grid.Row="2" Background="#144552">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="CarInfotxtbox" Grid.Row="0" Foreground="White" Text="{Binding CurrentCar.Model}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Name="Pricetxtbox" Grid.Row="1" Foreground="White" Text="Price" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button Grid.Row="2" Name="Rent" Background="Green" Foreground="White" Content="Rent" FontSize="16" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50 0 0 0" />
+            <Button Grid.Row="2" Name="Cancel" Background="Red" Foreground="White" Content="Cancel" FontSize="16" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 50 0" Click="Cancelbtn"/>
+        </Grid>
+    </Grid>
+</Window>

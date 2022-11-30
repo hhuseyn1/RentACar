@@ -6,13 +6,39 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:Project.Views" xmlns:viewModel="clr-namespace:Project.ViewModel"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="MainView" Height="698.19" Width="1256.267" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" AllowsTransparency="True" BorderThickness="0" WindowStyle="None" >
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
 
-
-    <Grid x:Name="Cars">
+    <Grid Background="Beige">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" MouseDown="Drag">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="2" Name="Minimize" Content="-" Template="{DynamicResource Minimize}" Click="Minimize_Close_Click" Style="{DynamicResource Min}" ></Button>
+            <Button Grid.Column="3" Template="{DynamicResource Minimize}"  Style="{DynamicResource Close}" Name="Close" Margin="10 0 0 0" Content="x"  Click="Minimize_Close_Click"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel>
+                    <Button x:Name="ViewScreen" Width="250" BorderThickness="1" Margin=" 0 0 0 30" Background="Beige" Foreground="Black" FontSize="20" Content="Cars" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
+                    <Button Width="250" BorderThickness="1" Margin=" 0 0 0 30" Background="Beige" Foreground="Black" FontSize="20" Content="Account" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" />
+                    <Button Width="250" BorderThickness="1" Margin=" 0 0 0 30" Background="Beige" Foreground="Black" FontSize="20" Content="Settings" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" />
+                </StackPanel>
+            </Grid>
+            <Grid Name="CarsScreen" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
         <Grid.Background>
             <ImageBrush ImageSource="/Images/ParkingZone2D.jpg"></ImageBrush>
         </Grid.Background>
@@ -31,7 +57,7 @@
             <RowDefinition Height="223*"/>
         </Grid.RowDefinitions>
 
-        <ListBox Grid.RowSpan="99" Grid.ColumnSpan="99" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListBox Grid.RowSpan="99" Grid.ColumnSpan="99" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="CarRentScreenClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="55, 20, 0, 0">
@@ -78,6 +104,11 @@
             </Button.Style>
         </Button>
         <fa:ImageAwesome Visibility="{Binding Visibility}" Grid.RowSpan="99" Grid.ColumnSpan="99" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="Refresh" Spin="True" Height="48" Width="48" />
+            </Grid>
+        </Grid>
     </Grid>
+    
+   
+    
 
 </Window>
