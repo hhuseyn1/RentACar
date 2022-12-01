@@ -13,7 +13,7 @@ public partial class RentView : Window
         InitializeComponent();
         CurrentCar = car;
         CarInfotxtbox.Text = CurrentCar.Make +' '+ CurrentCar.Model;
-        Pricetxtbox.Text = CurrentCar.Price;
+        Pricetxtbox.Text = CurrentCar.Price + '$';
         //Image fix
     }
 

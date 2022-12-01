@@ -36,10 +36,29 @@ public partial class MainView : Window
 
     private void CarsScreenBtn(object sender, RoutedEventArgs e)
     {
-        CarsScreen.Visibility= Visibility.Visible;
+        WelcomeScreen.Visibility = Visibility.Hidden;
+        Settings.Visibility = Visibility.Hidden;
+        CarsScreen.Visibility = Visibility.Hidden;
+        Account.Visibility = Visibility.Hidden;
+
+        if (sender is Button btn)
+        {
+            if (btn.Name == "Carsbtn")
+            CarsScreen.Visibility= Visibility.Visible;
+            else if (btn.Name == "Accountbtn")
+            Account.Visibility= Visibility.Visible;
+            else if (btn.Name == "Settingsbtn")
+            Settings.Visibility= Visibility.Visible;
+        }
     }
 
     private void Drag(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ButtonState == e.LeftButton)
+            this.DragMove();
+    }
+
+    private void Window_MouseDown(object sender, MouseButtonEventArgs e)
     {
         if (e.ButtonState == e.LeftButton)
             this.DragMove();

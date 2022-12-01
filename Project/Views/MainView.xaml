@@ -6,13 +6,17 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:Project.Views" xmlns:viewModel="clr-namespace:Project.ViewModel"
         mc:Ignorable="d"
-        Title="MainView" Height="698.19" Width="1256.267" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" AllowsTransparency="True" BorderThickness="0" WindowStyle="None" >
+        Title="MainView" Height="698.19" Width="1256.267" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" AllowsTransparency="True" BorderThickness="0" WindowStyle="None">
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisib"/>
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Path="IsVisible" Mode="TwoWay" Converter="{StaticResource BoolToVisib}"/>
+    </Window.Visibility>
     <Grid>
-        
         <Border Style="{StaticResource Background}">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1.4,0">
@@ -21,109 +25,123 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-    <Grid>
-
+        <Grid>
             <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="7*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" MouseDown="Drag">
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="2" Name="Minimize" Content="-" Template="{DynamicResource Minimize}" Click="Minimize_Close_Click" Style="{DynamicResource Min}" ></Button>
-            <Button Grid.Column="3" Template="{DynamicResource Minimize}"  Style="{DynamicResource Close}" Name="Close" Margin="10 0 0 0" Content="x"  Click="Minimize_Close_Click"/>
-        </Grid>
-        <Grid Grid.Row="1">
-            
-            <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="4*"/>
-        </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                 
-                <StackPanel>
-                    <Button x:Name="ViewScreen" Width="250" BorderThickness="1" Margin=" 0 0 0 30" Background="Beige" Foreground="Black" FontSize="20" Content="Cars" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
-                    <Button Width="250" BorderThickness="1" Margin=" 0 0 0 30" Background="Beige" Foreground="Black" FontSize="20" Content="Account" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" />
-                    <Button Width="250" BorderThickness="1" Margin=" 0 0 0 30" Background="Beige" Foreground="Black" FontSize="20" Content="Settings" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" />
-                </StackPanel>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"  MouseDown="Window_MouseDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="2" Name="Minimize" Content="-" Template="{DynamicResource Minimize}" Click="Minimize_Close_Click" Style="{DynamicResource Min}" ></Button>
+                <Button Grid.Column="3" Template="{DynamicResource Minimize}"  Style="{DynamicResource Close}" Name="Close" Margin="10 0 0 0" Content="x"  Click="Minimize_Close_Click"/>
+
             </Grid>
-            <Grid Name="CarsScreen" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
-        <Grid.Background>
-                    <ImageBrush ImageSource="/Images/ParkingZone2D.jpg"/>
-                </Grid.Background>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="42*"/>
-            <ColumnDefinition Width="144*"/>
-            <ColumnDefinition Width="143*"/>
-            <ColumnDefinition Width="144*"/>
-            <ColumnDefinition Width="144*"/>
-            <ColumnDefinition Width="141*"/>
-            <ColumnDefinition Width="42*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="211*"/>
-            <RowDefinition Height="223*"/>
-        </Grid.RowDefinitions>
-
-        <ListBox Grid.RowSpan="99" Grid.ColumnSpan="99" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="CarRentScreenClick">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="55, 20, 0, 0">
-                        <Image Source="/Images/Car1.png" Stretch="None"/>
-                        <Label Content="{Binding Plate}"/>
+            <Grid  Grid.Row="1" Name="GridLogin" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3.5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <StackPanel>
+                        <Button Name="Carsbtn" Width="250" BorderThickness="0" Margin=" 0 0 0 30" Background="#3F0071" Foreground="White" FontSize="20" Content="Cars" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
+                        <Button Name="Accountbtn" Width="250" BorderThickness="0" Margin=" 0 0 0 30" Background="#3F0071" Foreground="White" FontSize="20" Content="Account" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
+                        <Button Name="Settingsbtn"  Width="250" BorderThickness="0" Margin=" 0 0 0 30" Background="#3F0071" Foreground="White" FontSize="20" Content="Settings" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
                     </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True">
-                        <WrapPanel.Background>
-                            <ImageBrush ImageSource="/Images/ParkingZone2D.jpg"></ImageBrush>
-                        </WrapPanel.Background>
-                    </WrapPanel>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            
-        </ListBox>
-        <TextBlock Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" >
+                </Grid>
+                <!-- Cars selection view-->
+                <Grid Name="CarsScreen" Grid.Row="1" Grid.Column="1" Visibility="Hidden" Margin="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="42*"/>
+                        <ColumnDefinition Width="144*"/>
+                        <ColumnDefinition Width="143*"/>
+                        <ColumnDefinition Width="144*"/>
+                        <ColumnDefinition Width="144*"/>
+                        <ColumnDefinition Width="141*"/>
+                        <ColumnDefinition Width="42*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="211*"/>
+                        <RowDefinition Height="223*"/>
+                    </Grid.RowDefinitions>
+
+                    <ListBox Grid.RowSpan="99" Grid.ColumnSpan="99" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="CarRentScreenClick">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="55, 20, 0, 0">
+                                    <Image Source="/Images/Car1.png" Stretch="None"/>
+                                    <Label Content="{Binding Plate}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel IsItemsHost="True">
+                                    <WrapPanel.Background>
+                                        <ImageBrush ImageSource="/Images/ParkingZone2D.jpg"></ImageBrush>
+                                    </WrapPanel.Background>
+                                </WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                    </ListBox>
+                    <TextBlock Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" >
             <Run Text="Page: "/>
             <Run Text="{Binding CurrentPage}"/>
-        </TextBlock>
-        <Button Command="{Binding PrevPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" Height="50" Content="←" FontSize="30">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Style.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Style.Resources>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button Command="{Binding NextPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" Height="50" Content="→" FontSize="30">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Style.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Style.Resources>
-                </Style>
-            </Button.Style>
-        </Button>
-        <fa:ImageAwesome Visibility="{Binding Visibility}" Grid.RowSpan="99" Grid.ColumnSpan="99" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="Refresh" Spin="True" Height="48" Width="48" />
+                    </TextBlock>
+                    <Button Command="{Binding PrevPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" Height="50" Content="←" FontSize="30">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Command="{Binding NextPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" Height="50" Content="→" FontSize="30">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <fa:ImageAwesome Visibility="{Binding Visibility}" Grid.RowSpan="99" Grid.ColumnSpan="99" HorizontalAlignment="Center" VerticalAlignment="Center" Icon="Refresh" Spin="True" Height="48" Width="48" />
+                </Grid>
+                
+                <!-- Account selection view-->
+                
+                <Grid Name="Account" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+                    <StackPanel>
+                        <TextBlock Text="Your Profile" Foreground="White" FontSize="35"/>
+                        <Separator Margin="0 0 20 0"/>
+                        <TextBlock Text="Name" Foreground="White" FontSize="23"/>
+
+
+                    </StackPanel>
+                </Grid>
+                
+                <!-- Settings selection view-->
+                <Grid Name="Settings" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+                </Grid>
+                
+                <!--Hidden screen view-->
+                
+                <Grid Grid.Column="1" Visibility="Hidden" Name="WelcomeScreen">
+                    <TextBlock VerticalAlignment="Center" Text="Welcome our Rent App" FontSize="40" Foreground="White" HorizontalAlignment="Center"/>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
-    </Grid>
-
-
-
 
 </Window>
