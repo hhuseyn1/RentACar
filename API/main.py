@@ -122,6 +122,7 @@ def DeleteVehicle(Id: int):
 @app.get("/GetCars")
 def GetCars():
     global CarData
+    FetchData()
     return CarData
 
 @app.get("/GetUsers")

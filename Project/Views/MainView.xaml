@@ -74,8 +74,14 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="55, 20, 0, 0">
-                                    <Image Source="/Images/Car1.png" Stretch="None"/>
-                                    <Label Content="{Binding Plate}"/>
+                                    <Grid>
+                                        <Grid.InputBindings>
+                                            <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=DataContext.CarRentScreenClick, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding ElementName=lBox_Cars,Path=SelectedIndex}"/>
+                                        </Grid.InputBindings>
+                                        <Image Source="/Images/Car1.png" Stretch="None"/>
+                                        <Label Content="{Binding Plate}"/>
+                                    </Grid>
+                                    
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -94,7 +100,7 @@
                         <Run Text="Page: "/>
                         <Run Text="{Binding CurrentPage}"/>
                     </TextBlock>
-                    <Button Command="{Binding CarRentScreenClick}" CommandParameter="{Binding ElementName=lBox_Cars,Path=SelectedIndex}" Margin="10" Content="Remove Vehicle" HorizontalAlignment="Center"></Button>
+                    <!--<Button Command="{Binding CarRentScreenClick}" CommandParameter="{Binding ElementName=lBox_Cars,Path=SelectedIndex}" Margin="10" Content="Remove Vehicle" HorizontalAlignment="Center"></Button>-->
                     <Button Command="{Binding PrevPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" Height="50" Content="←" FontSize="30">
                         <Button.Style>
                             <Style TargetType="Button">

@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Project.Model;
 using Project.Repositories;
+using Project.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
@@ -103,7 +105,12 @@ public class MainViewModel : ViewModelBase
 
     public void ExecuteCarRentScreenClick(object obj)
     {
-        MessageBox.Show(obj.ToString());
+        int index = int.Parse(obj.ToString()); 
+        if (CurrentPage != 1)
+            index = index + (CurrentPage * 10) - 10;
+        
+        RentView rentView = new RentView(AllCars[index]);
+        rentView.ShowDialog();
     }
 
     public void ExecutePrevCommand(object obj) => UpdatePage(true);
