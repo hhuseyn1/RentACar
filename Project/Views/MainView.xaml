@@ -49,9 +49,9 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <StackPanel>
-                        <Button Name="Carsbtn" Width="250" BorderThickness="0" Margin=" 0 0 0 30" Background="#3F0071" Foreground="White" FontSize="20" Content="Cars" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
-                        <Button Name="Accountbtn" Width="250" BorderThickness="0" Margin=" 0 0 0 30" Background="#3F0071" Foreground="White" FontSize="20" Content="Account" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
-                        <Button Name="Settingsbtn"  Width="250" BorderThickness="0" Margin=" 0 0 0 30" Background="#3F0071" Foreground="White" FontSize="20" Content="Settings" HorizontalAlignment="Center" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
+                        <Button Name="Carsbtn" Content="Cars" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
+                        <Button Name="Accountbtn" Content="Account" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
+                        <Button Name="Settingsbtn" Content="Settings" Style="{DynamicResource viewScreen}" Click="CarsScreenBtn"/>
                     </StackPanel>
                 </Grid>
                 <!-- Cars selection view-->
@@ -142,6 +142,7 @@
                 
                 <!-- Settings selection view-->
                 <Grid Name="Settings" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+                    <Button Grid.Column="2" Command="{Binding LogOut}" Template="{DynamicResource LogOut}"  Style="{DynamicResource LogOutbtn}" VerticalAlignment="Top" HorizontalAlignment="Left" Name="LogOut" Margin="10 0 0 0"  Click="Minimize_Close_Click"/>
                 </Grid>
                 
                 <!--Hidden screen view-->

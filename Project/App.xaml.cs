@@ -1,5 +1,4 @@
 ﻿using Project.Views;
-using System.Timers;
 using System.Windows;
 
 namespace Project;

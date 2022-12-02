@@ -30,6 +30,7 @@ public class MainViewModel : ViewModelBase
 
     public ICommand PrevPage { get; }
     public ICommand NextPage { get; }
+    public ICommand LogOut { get; }
     public ICommand CarRentScreenClick { get; }
     private IUserRepository userRepository;
 
@@ -39,8 +40,7 @@ public class MainViewModel : ViewModelBase
         get { return _currentUserName; }
         set { _currentUserName = value; OnPropChanged(nameof(CurrentUserName)); }
     }
-
-	private UserAccountModel _currentUserAccount;
+    private UserAccountModel _currentUserAccount;
 	public UserAccountModel CurrentUserAccount
 	{
 		get { return _currentUserAccount; }
@@ -61,11 +61,17 @@ public class MainViewModel : ViewModelBase
         _cars = new ObservableCollection<Car>();
         PrevPage = new RelayCommand(ExecutePrevCommand, CanExecutePrecCommand);
         NextPage = new RelayCommand(ExecuteNextCommand, CanExecuteNextCommand);
+        LogOut = new RelayCommand(ExecuteLogOutCommand);
         CarRentScreenClick = new RelayCommand(ExecuteCarRentScreenClick);
         userRepository = new UserRepository();
         //Cars.Add(new Car());
 		LoadCurrentUserData();
 	}
+
+    private void ExecuteLogOutCommand(object obj)
+    {
+        Application.Current.Shutdown();
+    }
 
     private async void LoadCurrentUserData()
     {
