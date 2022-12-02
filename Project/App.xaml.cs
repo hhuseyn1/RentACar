@@ -7,16 +7,25 @@ public partial class App : Application
 {
     protected void ApplicationStartup(object sender, StartupEventArgs e)
     {
-        var loginView = new LoginView();
-        loginView.Show();
-        loginView.IsVisibleChanged += (s, ev) =>
+        var LoadingView = new LoadindView();
+        LoadingView.Show();
+        LoadingView.IsVisibleChanged += (s1, ev1) =>
         {
-            if (loginView.IsVisible == false && loginView.IsLoaded)
+            if (LoadingView.IsVisible == false)
             {
-                var mainView = new MainView();
-                mainView.Show();
-                loginView.Close();
+                var loginView = new LoginView();
+                loginView.Show();
+                loginView.IsVisibleChanged += (s, ev) =>
+                {
+                    if (loginView.IsVisible == false && loginView.IsLoaded)
+                    {
+                        var mainView = new MainView();
+                        mainView.Show();
+                        loginView.Close();
+                    }
+                };
             }
+
         };
     }
 }
