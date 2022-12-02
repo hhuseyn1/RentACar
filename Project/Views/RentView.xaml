@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
             <TextBlock Name="CarInfotxtbox" Grid.Row="0" Foreground="White" Text="{Binding CurrentCar.Model}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Name="Pricetxtbox" Grid.Row="1" Foreground="White" Text="Price" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Button Grid.Row="2" Name="Rent" Background="Green" Content="Rent" HorizontalAlignment="Left" Margin="50 0 0 0" Style="{DynamicResource RentCancel}" />
+            <Button Grid.Row="2" Name="Rent" Background="Green" Content="Rent" HorizontalAlignment="Left" Margin="50 0 0 0" Style="{DynamicResource RentCancel}" Command="{Binding RentBtn}"/>
             <Button Grid.Row="2" Name="Cancel" Background="Red" Content="Cancel" HorizontalAlignment="Right" Margin="0 0 50 0" Click="Cancelbtn" Style="{DynamicResource RentCancel}" />
         </Grid>
     </Grid>
