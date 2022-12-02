@@ -28,6 +28,7 @@ public class MainViewModel : ViewModelBase
 
     public ICommand PrevPage { get; }
     public ICommand NextPage { get; }
+    public ICommand CarRentScreenClick { get; }
     private IUserRepository userRepository;
 
 	private UserAccountModel _currentUserAccount;
@@ -51,9 +52,10 @@ public class MainViewModel : ViewModelBase
         _cars = new ObservableCollection<Car>();
         PrevPage = new RelayCommand(ExecutePrevCommand, CanExecutePrecCommand);
         NextPage = new RelayCommand(ExecuteNextCommand, CanExecuteNextCommand);
+        CarRentScreenClick = new RelayCommand(ExecuteCarRentScreenClick);
         userRepository = new UserRepository();
-        Cars.Add(new Car());
-		//LoadCurrentUserData();
+        //Cars.Add(new Car());
+		LoadCurrentUserData();
 	}
 
     private async void LoadCurrentUserData()
@@ -96,6 +98,12 @@ public class MainViewModel : ViewModelBase
             }
         }
         
+    }
+
+
+    public void ExecuteCarRentScreenClick(object obj)
+    {
+        MessageBox.Show(obj.ToString());
     }
 
     public void ExecutePrevCommand(object obj) => UpdatePage(true);

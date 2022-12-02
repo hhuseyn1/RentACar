@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Project.Views"
+        xmlns:local="clr-namespace:Project.Views" xmlns:viewModel="clr-namespace:Project.ViewModel"
         mc:Ignorable="d"
         Title="RentView" Height="380" Width="350" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" BorderThickness="0" >
-    
+    <Window.DataContext>
+        <viewModel:RentViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"/>

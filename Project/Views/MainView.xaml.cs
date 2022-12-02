@@ -24,13 +24,9 @@ public partial class MainView : Window
         if (sender is Button btn)
         {
             if (btn.Name == "Minimize")
-            {
                 this.WindowState = WindowState.Minimized;
-            }
             else if (btn.Name == "Close")
-            {
                 Application.Current.Shutdown();
-            }
         }
     }
 
@@ -44,11 +40,11 @@ public partial class MainView : Window
         if (sender is Button btn)
         {
             if (btn.Name == "Carsbtn")
-            CarsScreen.Visibility= Visibility.Visible;
+                CarsScreen.Visibility= Visibility.Visible;
             else if (btn.Name == "Accountbtn")
-            Account.Visibility= Visibility.Visible;
+                Account.Visibility= Visibility.Visible;
             else if (btn.Name == "Settingsbtn")
-            Settings.Visibility= Visibility.Visible;
+                Settings.Visibility= Visibility.Visible;
         }
     }
 

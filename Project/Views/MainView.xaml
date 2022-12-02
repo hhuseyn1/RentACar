@@ -70,7 +70,7 @@
                         <RowDefinition Height="223*"/>
                     </Grid.RowDefinitions>
 
-                    <ListBox Grid.RowSpan="99" Grid.ColumnSpan="99" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="CarRentScreenClick">
+                    <ListBox Name="lBox_Cars" Grid.RowSpan="99" Grid.ColumnSpan="99" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="55, 20, 0, 0">
@@ -91,9 +91,10 @@
 
                     </ListBox>
                     <TextBlock Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" >
-            <Run Text="Page: "/>
-            <Run Text="{Binding CurrentPage}"/>
+                        <Run Text="Page: "/>
+                        <Run Text="{Binding CurrentPage}"/>
                     </TextBlock>
+                    <Button Command="{Binding CarRentScreenClick}" CommandParameter="{Binding ElementName=lBox_Cars,Path=SelectedIndex}" Margin="10" Content="Remove Vehicle" HorizontalAlignment="Center"></Button>
                     <Button Command="{Binding PrevPage}" Margin="5" Grid.RowSpan="99" Grid.ColumnSpan="99" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" Height="50" Content="←" FontSize="30">
                         <Button.Style>
                             <Style TargetType="Button">
