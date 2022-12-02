@@ -46,5 +46,6 @@
             FontWeight="Medium"
             Text="About Admin" />
         <TextBlock Margin="0,12,0,0" Text="{Binding ViewModel.AppVersion, Mode=OneWay}" />
+        <Button Content="Export Datas" Command="{Binding ViewModel.ExportAllDataCommand}"></Button>
     </StackPanel>
 </ui:UiPage>
