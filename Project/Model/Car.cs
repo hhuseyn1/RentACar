@@ -12,6 +12,6 @@ public class Car
     public string Price { get; set; }
     public string Source { get; set; }
     public int isRented { get; set; }
-
+    public string Description { get => Make +' '+ Model; set{ Description = value;}}
     public int Page { get; set; }
 }

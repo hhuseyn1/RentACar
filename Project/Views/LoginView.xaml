@@ -45,7 +45,7 @@
                 <Button Grid.Column="2" Template="{DynamicResource Minimize}"  Style="{DynamicResource Close}" Name="Close" Margin="10 0 0 0" Content="x"  Click="Minimize_Close_Click"/>
 
             </Grid>
-            <Grid  Grid.Row="1" Name="GridLogin" Visibility="Visible">
+            <Grid Grid.Row="1" Name="GridLogin" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
