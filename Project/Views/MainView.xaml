@@ -73,15 +73,14 @@
                     <ListBox Name="lBox_Cars" Grid.RowSpan="99" Grid.ColumnSpan="99" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="75, 70, 0, 0">
+                                <StackPanel Margin="75, 70, -5, 0">
                                     <Grid>
                                         <Grid.InputBindings>
                                             <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=DataContext.CarRentScreenClick, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding ElementName=lBox_Cars,Path=SelectedIndex}"/>
                                         </Grid.InputBindings>
                                         <Image Source="/Images/Car1.png" Stretch="None"/>
-                                        <Label Content="{Binding Plate}"/>
+                                        <Label Content="{Binding Description}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12"/>
                                     </Grid>
-                                    
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

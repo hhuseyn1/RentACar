@@ -1,4 +1,5 @@
 ﻿using Project.Views;
+using System.Timers;
 using System.Windows;
 
 namespace Project;
@@ -7,7 +8,6 @@ public partial class App : Application
 {
     protected void ApplicationStartup(object sender, StartupEventArgs e)
     {
-       
         var loginView = new LoginView();
         loginView.Show();
         loginView.IsVisibleChanged += (s, ev) =>
