@@ -8,7 +8,7 @@ public partial class App : Application
     protected void ApplicationStartup(object sender, StartupEventArgs e)
     {
        
-        var loginView = new LoginView();
+        var loginView = new MainView();
         loginView.Show();
         loginView.IsVisibleChanged += (s, ev) =>
         {

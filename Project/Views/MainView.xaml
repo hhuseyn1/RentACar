@@ -55,7 +55,7 @@
                     </StackPanel>
                 </Grid>
                 <!-- Cars selection view-->
-                <Grid Name="CarsScreen" Grid.Row="1" Grid.Column="1" Visibility="Hidden" Margin="30">
+                <Grid Name="CarsScreen" Grid.Row="1" Grid.Column="1" Visibility="Visible" Margin="30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="42*"/>
                         <ColumnDefinition Width="144*"/>
@@ -73,7 +73,7 @@
                     <ListBox Name="lBox_Cars" Grid.RowSpan="99" Grid.ColumnSpan="99" ItemsSource="{Binding Cars}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="55, 20, 0, 0">
+                                <StackPanel Margin="75, 70, 0, 0">
                                     <Grid>
                                         <Grid.InputBindings>
                                             <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=DataContext.CarRentScreenClick, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding ElementName=lBox_Cars,Path=SelectedIndex}"/>
@@ -128,7 +128,7 @@
                 
                 <!-- Account selection view-->
                 
-                <Grid Name="Account" Grid.Row="1" Grid.Column="1" Visibility="Visible">
+                <Grid Name="Account" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
                     <StackPanel>
                         <TextBlock Text="Your Profile" Foreground="White" FontSize="35"/>
                         <Separator Margin="0 0 20 0"/>
