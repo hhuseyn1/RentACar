@@ -132,7 +132,10 @@
                     <StackPanel>
                         <TextBlock Text="Your Profile" Foreground="White" FontSize="35"/>
                         <Separator Margin="0 0 20 0"/>
-                        <TextBlock Text="Name" Foreground="White" FontSize="23"/>
+                        <TextBlock Foreground="White" FontSize="23" >
+                            <Run Text="Name: "/>
+                            <Run Text="{Binding CurrentUserName}"/>
+                        </TextBlock>
 
 
                     </StackPanel>

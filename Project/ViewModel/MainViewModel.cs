@@ -33,6 +33,13 @@ public class MainViewModel : ViewModelBase
     public ICommand CarRentScreenClick { get; }
     private IUserRepository userRepository;
 
+    private string _currentUserName;
+    public string CurrentUserName
+    {
+        get { return _currentUserName; }
+        set { _currentUserName = value; OnPropChanged(nameof(CurrentUserName)); }
+    }
+
 	private UserAccountModel _currentUserAccount;
 	public UserAccountModel CurrentUserAccount
 	{
@@ -67,6 +74,7 @@ public class MainViewModel : ViewModelBase
 			var jsonString = JsonConvert.DeserializeObject<User>(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetUser?Username={IUserRepository.CurrentUsername}&Password={IUserRepository.CurrentPassword}"));
             if (jsonString != null)
             {
+                CurrentUserName = IUserRepository.CurrentUsername;
                 AllCars = JsonConvert.DeserializeObject<List<Car>>(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetCars"));
                 foreach (var Car in AllCars)
                 {
