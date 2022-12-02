@@ -1,6 +1,4 @@
 ﻿using Project.Views;
-using System.Diagnostics;
-using System.Threading;
 using System.Windows;
 
 namespace Project;
@@ -9,25 +7,17 @@ public partial class App : Application
 {
     protected void ApplicationStartup(object sender, StartupEventArgs e)
     {
-        var LoadingView = new LoadindView();
-        LoadingView.Show();
-        LoadingView.IsVisibleChanged += (s1, ev1) =>
+       
+        var loginView = new LoginView();
+        loginView.Show();
+        loginView.IsVisibleChanged += (s, ev) =>
         {
-            if (LoadingView.IsVisible == false)
+            if (loginView.IsVisible == false && loginView.IsLoaded)
             {
-                var loginView = new LoginView();
-                loginView.Show();
-                loginView.IsVisibleChanged += (s, ev) =>
-                {
-                    if (loginView.IsVisible == false && loginView.IsLoaded)
-                    {
-                        var mainView = new MainView();
-                        mainView.Show();
-                        loginView.Close();
-                    }
-                };
+                var mainView = new MainView();
+                mainView.Show();
+                loginView.Close();
             }
-            
-        };    
+        };
     }
 }
