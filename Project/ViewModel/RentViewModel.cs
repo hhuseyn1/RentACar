@@ -1,6 +1,7 @@
 ﻿using Project.Repositories;
 using System;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,8 +17,11 @@ class RentViewModel : ViewModelBase
 
     }
 
-    private void ExecuteRentCommand(object obj)
+    private async void ExecuteRentCommand(object obj)
     {
-        MessageBox.Show("Test");
+        AllCars.Remove(BaseSelectedCar);
+        await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/RentVehicle?Id={BaseSelectedCar.Id}");
+
+        Application.Current.Windows[1].Close();
     }
 }

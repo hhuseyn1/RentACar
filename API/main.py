@@ -33,6 +33,7 @@ DbConnection = {
 
 Connection = mysql.connector.connect(host=DbConnection["Host"], database=DbConnection["Database"], user=DbConnection["User"], password=DbConnection["Password"])
 Cursor = Connection.cursor(buffered=True, dictionary=True)
+
 print("Database Connection Established")
 
 def FetchData():
@@ -44,6 +45,7 @@ def FetchData():
     Cursor.execute(f"SELECT * FROM users")
     Connection.commit()
     UserData = Cursor.fetchall()
+    threading.Timer(3.0, FetchData).start()
 
 FetchData()
 
@@ -59,6 +61,12 @@ def Register(Firstname: str, Lastname: str, Email: str, Username: str, Password:
         return "Succesfully registered"
     except Exception:
         return "Same Username"
+
+@app.get("/RentVehicle")
+def RentVehicle(Id: int):
+    Cursor.execute(f"UPDATE cars SET isRented = '1' WHERE Id = '{Id}'")
+    Connection.commit()
+    return "Succesfully"
 
 @app.get("/GetUser")
 def GetUser(Username: str, Password: str):
@@ -122,7 +130,6 @@ def DeleteVehicle(Id: int):
 @app.get("/GetCars")
 def GetCars():
     global CarData
-    FetchData()
     return CarData
 
 @app.get("/GetUsers")

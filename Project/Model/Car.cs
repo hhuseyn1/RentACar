@@ -11,6 +11,7 @@ public class Car
     public string Plate { get; set; }
     public string Price { get; set; }
     public string Source { get; set; }
+    public int isRented { get; set; }
 
     public int Page { get; set; }
 }

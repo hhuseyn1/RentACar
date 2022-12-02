@@ -28,6 +28,7 @@
                         <Label Content="{Binding Model}" ContentStringFormat="Model: {0}"/>
                         <Label Content="{Binding Plate}" ContentStringFormat="Plate: {0}"/>
                         <Label Content="{Binding Price}" ContentStringFormat="Price: {0}"/>
+                        <Label Content="{Binding isRented}" ContentStringFormat="IsRented: {0}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

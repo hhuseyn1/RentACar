@@ -40,7 +40,7 @@ public class MainViewModel : ViewModelBase
         set { _currentUserAccount = value; OnPropChanged(nameof(CurrentUserAccount)); }
 	}
 
-    private List<Car> AllCars;
+    
 
     private ObservableCollection<Car> _cars;
     public ObservableCollection<Car> Cars
@@ -70,9 +70,11 @@ public class MainViewModel : ViewModelBase
                 AllCars = JsonConvert.DeserializeObject<List<Car>>(await new HttpClient().GetStringAsync($"{System.Configuration.ConfigurationManager.AppSettings["ApiConnectionHost"]}/GetCars"));
                 foreach (var Car in AllCars)
                 {
-                    if (Car.Page == CurrentPage)
-                        Cars.Add(Car);
+                    if (Car.isRented == 0)
+                        if (Car.Page == CurrentPage)
+                            Cars.Add(Car);
                 }
+
                 Visibility = Visibility.Hidden;
             }
             else
@@ -108,7 +110,8 @@ public class MainViewModel : ViewModelBase
         int index = int.Parse(obj.ToString()); 
         if (CurrentPage != 1)
             index = index + (CurrentPage * 10) - 10;
-        
+
+        BaseSelectedCar = AllCars[index];
         RentView rentView = new RentView(AllCars[index]);
         rentView.ShowDialog();
     }
@@ -128,8 +131,9 @@ public class MainViewModel : ViewModelBase
         Cars.Clear();
         foreach (var Car in AllCars)
         {
-            if (Car.Page == CurrentPage)
-                Cars.Add(Car);
+            if (Car.isRented == 0)
+                if (Car.Page == CurrentPage)
+                    Cars.Add(Car);
         }
     }
 }
