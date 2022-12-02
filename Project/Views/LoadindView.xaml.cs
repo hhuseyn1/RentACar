@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,7 +14,13 @@ public partial class LoadindView : Window
     public LoadindView()
     {
         InitializeComponent();
-        
+        ThreadSleep();
+    }
+
+    private async void ThreadSleep()
+    {
+        await Task.Delay(3000);
+        Visibility = Visibility.Hidden;
     }
 
     private void MouseEnter(object sender, MouseEventArgs e)
