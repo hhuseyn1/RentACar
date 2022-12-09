@@ -25,10 +25,10 @@ LastUser = {}
 # 'http://127.0.0.1:8000/DeleteUser?Username=Salam&Password=Adam'
 
 DbConnection = {
-    "Host": "176.53.69.151",
-    "Database": "unexfive_daily",
-    "User": "unexfive_Daily",
-    "Password": "0e1*37cnB",
+    "Host": "",
+    "Database": "",
+    "User": "",
+    "Password": "",
 }
 
 Connection = mysql.connector.connect(host=DbConnection["Host"], database=DbConnection["Database"], user=DbConnection["User"], password=DbConnection["Password"])
